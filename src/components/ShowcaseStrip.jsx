@@ -31,7 +31,7 @@ export default function ServiceHighlights() {
       id: 4,
       icon: Headphones,
       title: "Expert Support",
-      subtitle: "Dedicated tech help",
+      subtitle: "Dedicated Experts help",
     },
     {
       id: 5,
@@ -60,7 +60,7 @@ export default function ServiceHighlights() {
                   </p>
                 </div>
               </div>
-              
+
               {/* VERTICAL DIVIDER (Hidden on mobile/small screens) */}
               {index !== items.length - 1 && (
                 <div className="hidden lg:block w-px h-10 bg-[#E0E7E7] mx-4" />
