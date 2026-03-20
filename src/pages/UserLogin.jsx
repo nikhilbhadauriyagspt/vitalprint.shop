@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Lock, Eye, EyeOff, ArrowRight, Loader2, ShieldCheck, ChevronLeft, Sparkles } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
 import API_BASE_URL from '../config';
+import SEO from '@/components/SEO';
 
 export default function UserLogin() {
   const [email, setEmail] = useState('');
@@ -25,7 +26,6 @@ export default function UserLogin() {
       });
 
       const data = await response.json();
-
       if (data.status === 'success') {
         localStorage.setItem('user', JSON.stringify(data.data));
         window.dispatchEvent(new Event('storage'));
@@ -41,114 +41,77 @@ export default function UserLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#fafbfc] font-['Rubik'] px-6 py-20">
+    <div className="min-h-screen flex items-center justify-center bg-[#F8FAFA] px-6 py-20 font-['Rubik']">
+      <SEO title="Login | Harry's Printer Store" />
 
-      <div className="max-w-[1000px] w-full grid grid-cols-1 lg:grid-cols-2 bg-white rounded-[3rem] overflow-hidden border border-slate-100">
-
-        {/* Left Side: Professional Message */}
-        <div className="hidden lg:flex flex-col justify-between p-16 bg-slate-950 relative overflow-hidden">
-          <div className="relative z-10">
-            <Link to="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-all mb-16 group">
-              <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-              <span className="text-[11px] font-bold uppercase tracking-widest">Back to store</span>
-            </Link>
-
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 text-[#FF2D37]">
-                <Sparkles size={20} />
-                <span className="text-[11px] font-black uppercase tracking-[3px]">Member Access</span>
-              </div>
-              <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight capitalize">
-                Welcome <br /> back to studio
-              </h2>
-              <p className="text-slate-400 text-lg font-medium leading-relaxed max-w-xs mt-4">
-                Secure access to your saved products, orders, and technical help.
-              </p>
-            </div>
-          </div>
-
-          <div className="relative z-10 flex items-center gap-3 text-slate-500 text-xs font-bold uppercase tracking-widest">
-            <ShieldCheck size={16} className="text-[#FF2D37]" />
-            <span>End-to-end encrypted session</span>
-          </div>
-
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF2D37] opacity-10 blur-[100px] rounded-full pointer-events-none" />
+      <div className="max-w-md w-full bg-white rounded-2xl border border-[#E0E7E7] shadow-sm p-8 md:p-10">
+        <div className="text-center mb-10">
+          <h1 className="text-2xl font-bold text-[#37474F]">Welcome Back</h1>
+          <p className="text-sm text-[#64748B] mt-2 font-medium">Please enter your details to sign in.</p>
         </div>
 
-        {/* Right Side: Form Stage */}
-        <div className="p-10 md:p-16 flex flex-col justify-center bg-white">
-          <div className="mb-12">
-            <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2 capitalize">Sign In</h1>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-[#FF2D37]">Access your professional account</p>
-          </div>
+        <form onSubmit={handleLogin} className="space-y-6">
+          {error && (
+            <div className="p-3 bg-red-50 text-red-600 text-xs font-bold rounded-lg border border-red-100 text-center">
+              {error}
+            </div>
+          )}
 
-          <form onSubmit={handleLogin} className="space-y-8">
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="p-4 bg-red-50 text-red-600 text-xs font-bold uppercase tracking-widest rounded-xl border border-red-100 text-center"
-              >
-                {error}
-              </motion.div>
-            )}
-
-            <div className="space-y-6">
-              <div className="space-y-2.5">
-                <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Email address</label>
-                <div className="relative group">
-                  <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#FF2D37] transition-colors" size={18} />
-                  <input
-                    required
-                    type="email"
-                    placeholder="name@company.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-16 pl-14 pr-6 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#FF2D37] outline-none text-[15px] font-bold text-slate-900 transition-all shadow-sm"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2.5">
-                <div className="flex justify-between items-center px-1">
-                  <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest">Password</label>
-                  <Link to="#" className="text-[10px] font-bold text-[#FF2D37] hover:underline uppercase tracking-widest">Forgot?</Link>
-                </div>
-                <div className="relative group">
-                  <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#FF2D37] transition-colors" size={18} />
-                  <input
-                    required
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full h-16 pl-14 pr-14 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#FF2D37] outline-none text-[15px] font-bold text-slate-900 transition-all shadow-sm"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#FF2D37] transition-colors"
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-[#94A3B8] uppercase ml-1">Email Address</label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                <input
+                  required
+                  type="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full h-12 pl-11 pr-4 bg-[#F8FAFA] border border-[#E0E7E7] rounded-xl outline-none focus:border-[#7EA1A1] transition-all text-sm font-medium"
+                />
               </div>
             </div>
 
-            <button
-              disabled={loading}
-              className="w-full h-16 bg-slate-950 text-white flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-widest rounded-full hover:bg-[#FF2D37] transition-all active:scale-95 disabled:opacity-70 group"
-            >
-              {loading ? <Loader2 className="animate-spin" size={24} /> : <>Sign In <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></>}
-            </button>
-          </form>
-
-          <div className="mt-12 pt-8 border-t border-slate-100 text-center">
-            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-              New to our platform?{' '}
-              <Link to="/signup" className="text-[#FF2D37] hover:underline ml-1 font-black">Create account</Link>
-            </p>
+            <div className="space-y-1">
+              <div className="flex justify-between items-center px-1">
+                <label className="text-xs font-bold text-[#94A3B8] uppercase">Password</label>
+                <Link to="#" className="text-[10px] font-bold text-[#7EA1A1] hover:underline uppercase">Forgot?</Link>
+              </div>
+              <div className="relative">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                <input
+                  required
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full h-12 pl-11 pr-12 bg-[#F8FAFA] border border-[#E0E7E7] rounded-xl outline-none focus:border-[#7EA1A1] transition-all text-sm font-medium"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 hover:text-[#7EA1A1]"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </div>
           </div>
+
+          <button
+            disabled={loading}
+            className="w-full h-12 bg-[#37474F] text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-[#7EA1A1] transition-all disabled:opacity-70"
+          >
+            {loading ? <Loader2 className="animate-spin mx-auto" size={20} /> : 'Sign In'}
+          </button>
+        </form>
+
+        <div className="mt-8 pt-6 border-t border-[#F1F5F5] text-center">
+          <p className="text-sm text-[#64748B] font-medium">
+            Don't have an account?{' '}
+            <Link to="/signup" className="text-[#7EA1A1] font-bold hover:underline">Sign up</Link>
+          </p>
         </div>
       </div>
     </div>

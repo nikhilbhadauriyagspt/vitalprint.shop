@@ -38,7 +38,7 @@ export default function Collections() {
           <div className="absolute inset-0 w-full h-full">
             <img
               src={laptopCat}
-              alt="Premium Laptops"
+              alt="Laptops"
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
             {/* Soft Light Overlay */}
@@ -79,7 +79,7 @@ export default function Collections() {
           <div className="absolute inset-0 w-full h-full">
             <img
               src={printerCat}
-              alt="Premium Printers"
+              alt="Printers"
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
             {/* Soft Light Overlay */}

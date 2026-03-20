@@ -53,7 +53,7 @@ export default function SaleBanners() {
                 Creative tech
               </span>
               <h3 className="text-2xl md:text-3xl font-black text-white leading-tight mb-4 capitalize">
-                Premium inkjet <br /> technology
+                High-quality inkjet <br /> technology
               </h3>
               <p className="text-white/80 text-base font-medium mb-6 max-w-[280px]">
                 Vibrant colors and sharp details for professional results.

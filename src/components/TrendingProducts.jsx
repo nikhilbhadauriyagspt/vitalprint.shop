@@ -1,89 +1,118 @@
 import { motion } from "framer-motion";
-import { Star, ShoppingCart, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Star, ShoppingCart, ArrowRight, TrendingUp } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 const products = [
   {
-    name: "PrimeBook Air M2",
+    name: "HP LaserJet Pro MFP",
+    tag: "Top Rated",
+    price: "$349",
+    image: "/category/all-in-one-printers.png",
+    rating: "4.9"
+  },
+  {
+    name: "Epson EcoTank L3250",
+    tag: "Best Seller",
+    price: "$299",
+    image: "/category/inkjet-printers.png",
+    rating: "4.8"
+  },
+  {
+    name: "Brother HL-L2350DW",
     tag: "Most Popular",
-    price: "$999",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=400",
-    color: "bg-blue-50/50"
+    price: "$199",
+    image: "/category/laser-printers.png",
+    rating: "4.7"
   },
   {
-    name: "Blade Pro 16",
-    tag: "High Performance",
-    price: "$2,199",
-    image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=400",
-    color: "bg-purple-50/50"
-  },
-  {
-    name: "Zenith Studio",
-    tag: "Creative Choice",
-    price: "$1,499",
-    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=400",
-    color: "bg-emerald-50/50"
-  },
-  {
-    name: "Office Jet 500",
-    tag: "New Solution",
-    price: "$499",
-    image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=400",
-    color: "bg-orange-50/50"
+    name: "Canon PIXMA G3010",
+    tag: "New Arrival",
+    price: "$249",
+    image: "/category/supertank-printers.png",
+    rating: "4.9"
   }
 ];
 
 export default function TrendingProducts() {
   return (
-    <section className="px-6 md:px-10 lg:px-12 py-12 bg-white font-urbanist">
-      <div className="flex items-center justify-between mb-10">
-        <h3 className="text-2xl font-bold  capitalize">Trending <span className="text-blue-600">Now.</span></h3>
-        <Link to="#" className="text-xs font-bold text-slate-400 hover:text-black transition-colors capitalize tracking-widest flex items-center gap-2 group">
-          Explore All <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((p, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="group cursor-pointer"
-          >
-            <div className={`aspect-square rounded-3xl ${p.color} border border-gray-100 p-8 relative overflow-hidden transition-all duration-500 group-hover:border-slate-300`}>
-              <img
-                src={p.image}
-                className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700"
-                alt={p.name}
-              />
-              <span className="absolute top-4 left-4 text-[8px] font-bold capitalize tracking-[0.2em] bg-white px-3 py-1 rounded-full border border-gray-100 shadow-sm">
-                {p.tag}
-              </span>
+    <section className="w-full py-16 md:py-24 bg-white font-['Rubik'] overflow-hidden">
+      <div className="max-w-[1800px] mx-auto px-6">
+        
+        {/* HEADER */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-3 text-[#7EA1A1]">
+              <TrendingUp size={20} />
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em]">High Demand</span>
             </div>
-            <div className="mt-4 px-2 flex justify-between items-start">
-              <div>
-                <h4 className="font-bold text-slate-900 text-sm ">{p.name}</h4>
-                <div className="flex items-center gap-3 mt-1">
-                  <span className="text-blue-600 font-bold text-sm">{p.price}</span>
-                  <div className="flex items-center gap-1 text-amber-400">
-                    <Star size={10} fill="currentColor" />
-                    <span className="text-[10px] font-bold text-slate-400">4.9</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#37474F] tracking-tight">
+              Trending <span className="text-[#7EA1A1]">Now.</span>
+            </h2>
+          </div>
+
+          <Link 
+            to="/shop" 
+            className="group flex items-center gap-2 text-[13px] font-bold text-[#94A3B8] hover:text-[#7EA1A1] transition-all uppercase tracking-wider"
+          >
+            Explore All Products
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+
+        {/* PRODUCTS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          {products.map((p, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="group"
+            >
+              {/* IMAGE CONTAINER */}
+              <div className="relative aspect-square rounded-[32px] bg-[#F8FAFA] border border-[#E0E7E7]/50 flex items-center justify-center p-8 overflow-hidden transition-all duration-500 group-hover:bg-white group-hover:shadow-[0_20px_50px_rgba(126,161,161,0.12)] group-hover:border-[#7EA1A1]/20">
+                <img
+                  src={p.image}
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 drop-shadow-md"
+                  alt={p.name}
+                />
+                
+                {/* FLOATING TAG */}
+                <span className="absolute top-5 left-5 text-[9px] font-black uppercase tracking-widest bg-white text-[#37474F] px-3.5 py-1.5 rounded-full shadow-sm border border-[#E0E7E7]/50 group-hover:border-[#7EA1A1]/30 transition-colors">
+                  {p.tag}
+                </span>
+
+                {/* QUICK ADD BUTTON */}
+                <button className="absolute bottom-5 right-5 w-11 h-11 rounded-full bg-white text-[#37474F] flex items-center justify-center shadow-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-[#7EA1A1] hover:text-white transition-all duration-300">
+                  <ShoppingCart size={18} strokeWidth={2} />
+                </button>
+              </div>
+
+              {/* PRODUCT INFO */}
+              <div className="mt-6 px-2">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <div className="flex items-center gap-0.5 text-amber-400">
+                    <Star size={12} fill="currentColor" />
                   </div>
+                  <span className="text-[12px] font-bold text-[#94A3B8]">{p.rating}</span>
+                </div>
+                
+                <h4 className="text-[16px] font-bold text-[#37474F] group-hover:text-[#7EA1A1] transition-colors line-clamp-1 mb-2">
+                  {p.name}
+                </h4>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-[18px] font-black text-[#37474F]">{p.price}</span>
+                  <span className="text-[11px] font-bold text-[#7EA1A1] uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">
+                    In Stock
+                  </span>
                 </div>
               </div>
-              <button className="h-8 w-8 rounded-full border border-gray-100 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-sm">
-                <ShoppingCart size={14} />
-              </button>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-
-// Fixed missing import in the created file
-import { Link } from 'react-router-dom';

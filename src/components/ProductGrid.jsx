@@ -23,7 +23,7 @@ export default function ProductGrid({ products = [] }) {
         return `/${imgs[0]}`;
       }
     } catch (e) { }
-    return "https://via.placeholder.com/400x400?text=Dash Printer shop";
+    return "https://via.placeholder.com/400x400?text=Harry's Printer Store";
   };
 
   return (
@@ -61,7 +61,7 @@ export default function ProductGrid({ products = [] }) {
               {/* Brand Badge */}
               <div className="absolute top-5 left-5 z-10">
                 <span className="px-2.5 py-1 bg-white/80 backdrop-blur-md border border-slate-100 rounded-lg text-[8px] font-bold capitalize tracking-widest text-slate-400">
-                  {p.brand_name || 'Premium'}
+                  Hardware
                 </span>
               </div>
 

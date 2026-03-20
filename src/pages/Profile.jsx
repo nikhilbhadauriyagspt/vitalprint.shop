@@ -6,7 +6,7 @@ import API_BASE_URL from '../config';
 import {
   User,
   Lock,
-  ShoppingBag,
+  ShoppingBag, ArrowRight,
   Package,
   ChevronRight,
   LogOut,
@@ -14,8 +14,13 @@ import {
   Eye,
   EyeOff,
   Loader2,
-  Sparkles
+  Sparkles,
+  LayoutGrid,
+  Shield,
+  MapPin,
+  Phone
 } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 export default function Profile() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') || 'null'));
@@ -71,10 +76,10 @@ export default function Profile() {
       if (data.status === 'success') {
         localStorage.setItem('user', JSON.stringify(data.data));
         setUser(data.data);
-        showToast("System profile updated.");
+        showToast("Identity parameters synchronized.");
       }
     } catch (err) {
-      showToast("Update failed", "error");
+      showToast("Update sequence failed", "error");
     } finally {
       setIsUpdating(false);
     }
@@ -83,7 +88,7 @@ export default function Profile() {
   const handleSecurityUpdate = async (e) => {
     e.preventDefault();
     if (securityForm.password !== securityForm.confirmPassword) {
-      showToast("Mismatch in credentials", "error");
+      showToast("Credential mismatch", "error");
       return;
     }
     setIsUpdating(true);
@@ -99,7 +104,7 @@ export default function Profile() {
         setSecurityForm({ password: '', confirmPassword: '' });
       }
     } catch (err) {
-      showToast("Update failed", "error");
+      showToast("Sync failed", "error");
     } finally {
       setIsUpdating(false);
     }
@@ -114,122 +119,131 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <div className="bg-white min-h-screen font-['Rubik'] text-slate-900 pb-20">
+    <div className="bg-white min-h-screen font-['Rubik'] text-[#37474F] pb-20">
+      <SEO title="User Dashboard | Account Management" />
 
-      {/* --- PAGE HEADER --- */}
-      <div className="bg-slate-50 border-b border-slate-100 py-12 md:py-16 mb-16">
-        <div className="max-w-full mx-auto px-4 md:px-6 xl:px-26 flex flex-col md:flex-row md:items-end justify-between gap-8">
+      {/* --- REFINED PAGE HEADER --- */}
+      <div className="bg-[#F8FAFA] border-b border-[#E0E7E7] py-12 md:py-16 mb-16 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/4 h-full bg-[#7EA1A1]/5 skew-x-12 translate-x-1/2" />
+
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row md:items-end justify-between gap-8 relative z-10">
           <div>
-            <nav className="flex items-center gap-2 text-[12px] font-bold text-[#FF2D37] uppercase tracking-[3px] mb-4">
-              <Link to="/" className="hover:text-slate-950 transition-colors">Home</Link>
-              <ChevronRight size={14} className="text-slate-300" />
-              <span className="text-slate-400">My Profile</span>
+            <nav className="flex items-center gap-2 text-[11px] font-bold text-[#7EA1A1] uppercase tracking-[0.4em] mb-6">
+              <Link to="/" className="hover:text-[#37474F] transition-colors">Home</Link>
+              <ChevronRight size={14} className="text-[#E0E7E7]" />
+              <span className="text-[#94A3B8]">Professional Hub</span>
             </nav>
-            <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-none tracking-tight capitalize">
-              Account dashboard
+            <h1 className="text-4xl md:text-6xl font-bold text-[#37474F] leading-none tracking-tight">
+              Control <span className="text-[#7EA1A1] italic">Panel.</span>
             </h1>
           </div>
 
-          <div className="flex items-center gap-2 px-5 py-2.5 bg-white text-[#FF2D37] rounded-2xl border border-slate-100 shadow-sm">
-            <ShieldCheck size={18} />
-            <span className="text-[11px] font-black uppercase tracking-widest">Authenticated Session</span>
+          <div className="flex items-center gap-3 px-6 py-3 bg-white text-[#37474F] rounded-2xl border border-[#E0E7E7] shadow-sm">
+            <ShieldCheck size={20} className="text-[#7EA1A1]" />
+            <span className="text-[11px] font-black uppercase tracking-widest text-[#94A3B8]">Authenticated Stream Active</span>
           </div>
         </div>
       </div>
 
-      <div className="max-w-full mx-auto px-4 md:px-6 xl:px-26 mt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-10 mt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20">
 
-          {/* Sidebar Modular Panel */}
+          {/* --- SIDEBAR PANEL --- */}
           <div className="lg:col-span-4">
-            <div className="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 sticky top-32">
+            <div className="bg-[#F8FAFA] p-10 rounded-[3rem] border border-[#E0E7E7] sticky top-32">
               <div className="flex flex-col items-center text-center mb-12">
-                <div className="h-24 w-24 bg-slate-900 text-white flex items-center justify-center text-3xl font-black rounded-3xl mb-6 shadow-xl shadow-slate-200">
+                <div className="h-24 w-24 bg-[#37474F] text-white flex items-center justify-center text-3xl font-bold rounded-3xl mb-6 shadow-xl shadow-[#37474F]/10 border-4 border-white">
                   {user.name.charAt(0).toUpperCase()}
                 </div>
-                <h2 className="text-2xl font-black text-slate-900 capitalize">{user.name}</h2>
-                <p className="text-sm font-medium text-slate-400 mt-2">{user.email}</p>
+                <h2 className="text-2xl font-bold text-[#37474F] capitalize tracking-tight">{user.name}</h2>
+                <p className="text-sm font-medium text-[#94A3B8] mt-2 uppercase tracking-widest text-[10px]">{user.email}</p>
               </div>
 
               <div className="space-y-3">
                 {[
-                  { id: 'profile', label: 'Identity settings', icon: User },
-                  { id: 'orders', label: 'Order history', icon: ShoppingBag },
-                  { id: 'security', label: 'Access protocols', icon: Lock }
+                  { id: 'profile', label: 'Identity Settings', icon: User },
+                  { id: 'orders', label: 'Hardware Logs', icon: Package },
+                  { id: 'security', label: 'Access Protocols', icon: Shield }
                 ].map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-4 px-6 py-4 text-[15px] font-bold transition-all rounded-2xl border ${activeTab === tab.id
-                      ? 'bg-white text-[#FF2D37] border-[#FF2D37]/20 shadow-xl shadow-slate-100'
-                      : 'text-slate-500 bg-transparent border-transparent hover:bg-white hover:text-slate-900'
+                    className={`w-full flex items-center gap-4 px-6 py-4 text-[14px] font-bold transition-all rounded-2xl border-2 ${activeTab === tab.id
+                      ? 'bg-white text-[#7EA1A1] border-[#7EA1A1] shadow-xl shadow-[#7EA1A1]/5'
+                      : 'text-[#64748B] border-transparent hover:bg-white hover:text-[#37474F] hover:border-[#E0E7E7]'
                       }`}
                   >
-                    <tab.icon size={20} />
-                    <span className="capitalize">{tab.label}</span>
+                    <tab.icon size={18} />
+                    <span className="tracking-tight">{tab.label}</span>
                   </button>
                 ))}
-                <button
-                  onClick={handleLogout}
-                  className="w-full flex items-center gap-4 px-6 py-4 text-[15px] font-bold text-red-500 hover:bg-red-50 transition-all rounded-2xl mt-10"
-                >
-                  <LogOut size={20} />
-                  Terminate Session
-                </button>
+
+                <div className="pt-8 mt-8 border-t border-[#E0E7E7]">
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-4 px-6 py-4 text-[14px] font-bold text-red-500 hover:bg-red-50 transition-all rounded-2xl group"
+                  >
+                    <LogOut size={18} className="group-hover:-translate-x-1 transition-transform" />
+                    Terminate Session
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Main Stage Panel */}
+          {/* --- MAIN STAGE PANEL --- */}
           <div className="lg:col-span-8">
             <AnimatePresence mode="wait">
               {activeTab === 'profile' && (
                 <motion.div
                   key="profile" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-                  className="bg-white p-8 md:p-16 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-100"
+                  className="bg-white p-8 md:p-16 rounded-[3rem] border border-[#E0E7E7]/60 shadow-sm"
                 >
-                  <div className="flex items-center gap-4 mb-16 pb-8 border-b border-slate-100">
-                    <div className="h-14 w-14 bg-slate-50 text-[#FF2D37] flex items-center justify-center rounded-2xl">
-                      <User size={28} strokeWidth={1.5} />
+                  <div className="flex items-center gap-5 mb-16 pb-8 border-b border-[#F8FAFA]">
+                    <div className="h-14 w-14 bg-[#F8FAFA] text-[#7EA1A1] flex items-center justify-center rounded-2xl border border-[#E0E7E7]">
+                      <User size={28} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black text-slate-950 capitalize">Personal identity</h3>
-                      <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">Update your verified contact data</p>
+                      <h3 className="text-2xl font-bold text-[#37474F] tracking-tight">Identity Parameters</h3>
+                      <p className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-[0.2em] mt-1">Update your verified contact data</p>
                     </div>
                   </div>
 
                   <form onSubmit={handleProfileUpdate} className="space-y-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
-                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">Display name</label>
+                        <label className="text-[11px] font-black text-[#94A3B8] uppercase tracking-[0.2em] ml-4">Full Identifier</label>
                         <input
                           required value={profileForm.name}
                           onChange={(e) => setProfileForm({ ...profileForm, name: e.target.value })}
-                          className="w-full h-16 px-8 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#FF2D37] outline-none text-[15px] font-bold text-slate-900 transition-all shadow-inner"
+                          className="w-full h-16 px-8 bg-[#F8FAFA] border border-[#E0E7E7] rounded-2xl focus:bg-white focus:border-[#7EA1A1] outline-none text-[15px] font-medium text-[#37474F] transition-all"
                         />
                       </div>
                       <div className="space-y-3">
-                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">Phone link</label>
+                        <label className="text-[11px] font-black text-[#94A3B8] uppercase tracking-[0.2em] ml-4">Communication Line</label>
                         <input
                           value={profileForm.phone}
                           onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
-                          className="w-full h-16 px-8 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#FF2D37] outline-none text-[15px] font-bold text-slate-900 transition-all shadow-inner"
+                          placeholder="+1 (000) 000-0000"
+                          className="w-full h-16 px-8 bg-[#F8FAFA] border border-[#E0E7E7] rounded-2xl focus:bg-white focus:border-[#7EA1A1] outline-none text-[15px] font-medium text-[#37474F] transition-all"
                         />
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">Default address</label>
+                      <label className="text-[11px] font-black text-[#94A3B8] uppercase tracking-[0.2em] ml-4">Standard Deployment Address</label>
                       <textarea
                         rows="4" value={profileForm.address}
                         onChange={(e) => setProfileForm({ ...profileForm, address: e.target.value })}
-                        className="w-full p-8 bg-slate-50 border border-slate-100 rounded-[2.5rem] focus:bg-white focus:border-[#FF2D37] outline-none text-[15px] font-bold text-slate-900 transition-all resize-none shadow-inner"
+                        placeholder="Complete logistics coordinates..."
+                        className="w-full p-8 bg-[#F8FAFA] border border-[#E0E7E7] rounded-[2.5rem] focus:bg-white focus:border-[#7EA1A1] outline-none text-[15px] font-medium text-[#37474F] transition-all resize-none"
                       ></textarea>
                     </div>
                     <button
                       disabled={isUpdating}
-                      className="h-16 px-12 bg-slate-950 text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-[#FF2D37] transition-all disabled:opacity-50 shadow-xl shadow-slate-200"
+                      className="h-16 px-12 bg-[#37474F] text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-[#7EA1A1] transition-all disabled:opacity-50 shadow-xl shadow-[#37474F]/10 flex items-center gap-3"
                     >
-                      {isUpdating ? "Syncing..." : "Apply Changes"}
+                      {isUpdating ? "Synchronizing..." : "Commit Changes"}
+                      {!isUpdating && <ArrowRight size={18} />}
                     </button>
                   </form>
                 </motion.div>
@@ -240,43 +254,45 @@ export default function Profile() {
                   key="orders" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
                   className="space-y-8"
                 >
-                  <div className="bg-white p-10 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-50 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="h-14 w-14 bg-slate-50 text-[#FF2D37] flex items-center justify-center rounded-2xl">
-                        <ShoppingBag size={28} strokeWidth={1.5} />
+                  <div className="bg-white p-10 md:p-12 rounded-[3rem] border border-[#E0E7E7]/60 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div className="flex items-center gap-5">
+                      <div className="h-14 w-14 bg-[#F8FAFA] text-[#7EA1A1] flex items-center justify-center rounded-2xl border border-[#E0E7E7]">
+                        <Package size={28} />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black text-slate-950 capitalize">Orders</h3>
-                        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">{orders.length} active records</p>
+                        <h3 className="text-2xl font-bold text-[#37474F] tracking-tight">Deployment Logs</h3>
+                        <p className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-[0.2em] mt-1">{orders.length} Active Procurements</p>
                       </div>
                     </div>
-                    <Link to="/shop" className="text-xs font-black text-[#FF2D37] uppercase tracking-widest hover:underline">New Acquisition</Link>
+                    <Link to="/shop" className="h-12 px-6 flex items-center justify-center bg-[#F8FAFA] text-[11px] font-bold text-[#7EA1A1] uppercase tracking-widest rounded-xl border border-[#E0E7E7] hover:bg-[#7EA1A1] hover:text-white transition-all">New Acquisition</Link>
                   </div>
 
                   {orders.length === 0 ? (
-                    <div className="bg-slate-50 p-24 text-center rounded-[3rem] border border-slate-100">
-                      <Package size={48} className="text-slate-300 mx-auto mb-8" />
-                      <p className="text-slate-400 font-bold uppercase text-[11px] tracking-widest">No procurement records found.</p>
+                    <div className="bg-[#F8FAFA] p-24 text-center rounded-[3rem] border border-[#E0E7E7]">
+                      <div className="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center mx-auto mb-8 border border-[#E0E7E7] shadow-sm">
+                        <LayoutGrid size={32} className="text-[#E0E7E7]" />
+                      </div>
+                      <p className="text-[#94A3B8] font-bold uppercase text-[11px] tracking-[0.3em]">No hardware records in current stream.</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 gap-6">
                       {orders.map((order) => (
-                        <div key={order.id} className="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden group hover:border-[#FF2D37]/20 transition-all hover:shadow-2xl hover:shadow-slate-100">
-                          <div className="p-10 flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-slate-50">
+                        <div key={order.id} className="bg-white border border-[#E0E7E7]/60 rounded-[2.5rem] overflow-hidden group hover:border-[#7EA1A1]/30 transition-all duration-500 shadow-sm">
+                          <div className="p-10 flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-[#F8FAFA]">
                             <div>
-                              <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3">ID #PTP-{order.id}</p>
-                              <span className={`px-4 py-1.5 text-[10px] font-black uppercase rounded-full border ${order.status === 'delivered' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-slate-50 text-slate-600 border-slate-100'}`}>
+                              <p className="text-[10px] font-black text-[#94A3B8] uppercase tracking-[0.3em] mb-3">Unit ID #DSP-{order.id}</p>
+                              <span className={`px-4 py-1.5 text-[10px] font-bold uppercase rounded-lg border ${order.status === 'delivered' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-blue-50 text-[#7EA1A1] border-blue-100'}`}>
                                 {order.status}
                               </span>
                             </div>
                             <div className="md:text-right space-y-1">
-                              <p className="text-2xl font-black text-slate-950">${order.total_amount}</p>
-                              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">{new Date(order.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                              <p className="text-3xl font-black text-[#37474F] tracking-tighter">${Number(order.total_amount).toLocaleString()}</p>
+                              <p className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-widest">{new Date(order.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
                             </div>
                           </div>
-                          <div className="p-6 bg-slate-50 border-t border-slate-50">
-                            <Link to="/orders" className="flex items-center justify-center gap-3 text-xs font-black text-slate-950 uppercase tracking-widest hover:text-[#FF2D37] transition-all group">
-                              <span>Track Shipment</span> <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                          <div className="p-6 bg-[#F8FAFA]/50 group-hover:bg-white transition-colors">
+                            <Link to={`/checkout?order_id=${order.id}`} className="flex items-center justify-center gap-3 text-[11px] font-bold text-[#37474F] uppercase tracking-widest hover:text-[#7EA1A1] transition-all group/btn">
+                              <span>Track Hardware Status</span> <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                             </Link>
                           </div>
                         </div>
@@ -289,45 +305,48 @@ export default function Profile() {
               {activeTab === 'security' && (
                 <motion.div
                   key="security" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-                  className="bg-white p-8 md:p-16 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-100"
+                  className="bg-white p-8 md:p-16 rounded-[3rem] border border-[#E0E7E7]/60 shadow-sm"
                 >
-                  <div className="flex items-center gap-4 mb-16 pb-8 border-b border-slate-100">
-                    <div className="h-14 w-14 bg-red-50 text-red-500 flex items-center justify-center rounded-2xl">
-                      <Lock size={28} strokeWidth={1.5} />
+                  <div className="flex items-center gap-5 mb-16 pb-8 border-b border-[#F8FAFA]">
+                    <div className="h-14 w-14 bg-red-50 text-red-500 flex items-center justify-center rounded-2xl border border-red-100">
+                      <Shield size={28} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black text-slate-950 capitalize">Access protocols</h3>
-                      <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">Manage your authentication layer</p>
+                      <h3 className="text-2xl font-bold text-[#37474F] tracking-tight">Access Protocols</h3>
+                      <p className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-[0.2em] mt-1">Manage your authentication layer</p>
                     </div>
                   </div>
 
                   <form onSubmit={handleSecurityUpdate} className="space-y-10">
                     <div className="space-y-3">
-                      <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">New protocol code</label>
-                      <div className="relative">
+                      <label className="text-[11px] font-black text-[#94A3B8] uppercase tracking-[0.2em] ml-4">New Protocol Code</label>
+                      <div className="relative group">
                         <input
                           type={showPass ? "text" : "password"} required
+                          placeholder="••••••••"
                           value={securityForm.password} onChange={(e) => setSecurityForm({ ...securityForm, password: e.target.value })}
-                          className="w-full h-16 pl-8 pr-16 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#FF2D37] outline-none text-[15px] font-bold text-slate-900 transition-all shadow-inner"
+                          className="w-full h-16 pl-8 pr-16 bg-[#F8FAFA] border border-[#E0E7E7] rounded-2xl focus:bg-white focus:border-[#7EA1A1] outline-none text-[15px] font-medium text-[#37474F] transition-all"
                         />
-                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#FF2D37]">
+                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-6 top-1/2 -translate-y-1/2 text-[#E0E7E7] hover:text-[#7EA1A1] transition-colors">
                           {showPass ? <EyeOff size={22} /> : <Eye size={22} />}
                         </button>
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-4">Verify protocol</label>
+                      <label className="text-[11px] font-black text-[#94A3B8] uppercase tracking-[0.2em] ml-4">Verify Access Key</label>
                       <input
                         type={showPass ? "text" : "password"} required
+                        placeholder="••••••••"
                         value={securityForm.confirmPassword} onChange={(e) => setSecurityForm({ ...securityForm, confirmPassword: e.target.value })}
-                        className="w-full h-16 pl-8 pr-8 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#FF2D37] outline-none text-[15px] font-bold text-slate-900 transition-all shadow-inner"
+                        className="w-full h-16 px-8 bg-[#F8FAFA] border border-[#E0E7E7] rounded-2xl focus:bg-white focus:border-[#7EA1A1] outline-none text-[15px] font-medium text-[#37474F] transition-all"
                       />
                     </div>
                     <button
                       disabled={isUpdating}
-                      className="h-16 px-12 bg-slate-950 text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-[#FF2D37] transition-all disabled:opacity-50 shadow-xl shadow-slate-200"
+                      className="h-16 px-12 bg-[#37474F] text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-[#7EA1A1] transition-all disabled:opacity-50 shadow-xl shadow-[#37474F]/10 flex items-center gap-3"
                     >
-                      {isUpdating ? "Processing..." : "Update Credentials"}
+                      {isUpdating ? "Encoding..." : "Update Security Credentials"}
+                      {!isUpdating && <ShieldCheck size={18} />}
                     </button>
                   </form>
                 </motion.div>

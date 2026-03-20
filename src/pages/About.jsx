@@ -14,7 +14,6 @@ import {
   Wrench,
   Target,
   Users,
-  ChevronsRight,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -22,133 +21,112 @@ export default function About() {
   const capabilities = [
     {
       icon: Printer,
-      title: "Top Quality Products",
-      desc: "Expert selection of LaserJet, All-in-One, and high-volume industrial systems tailored for your business needs."
+      title: "Quality Products",
+      desc: "A curated selection of modern printing systems, including all-in-one and high-volume industrial units tailored for efficiency."
     },
     {
       icon: Package,
-      title: "Supply Chain Excellence",
-      desc: "Source for 100% genuine ink, toner, and certified replacement parts with rapid nationwide delivery."
+      title: "Logistics Excellence",
+      desc: "Reliable access to ink, toner, and essential replacement parts with efficient nationwide delivery across the country."
     },
     {
       icon: Headphones,
-      title: "Quick Assistance",
-      desc: "Factory-trained technicians providing troubleshooting, installation guidance, and long-term hardware maintenance."
+      title: "Professional Support",
+      desc: "Expert technicians providing seamless setup guidance, troubleshooting, and long-term maintenance for your hardware."
     }
   ];
 
   const advantages = [
-    { title: "Verified Status", icon: ShieldCheck },
-    { title: "Genuine Supplies", icon: Package },
-    { title: "Hardware Service", icon: Zap },
-    { title: "Safe Logistics", icon: Globe },
-    { title: "Original Hardware", icon: CheckCircle2 },
-    { title: "Quick Assistance", icon: Headphones },
-    { title: "Sustainable Tech", icon: Leaf },
-    { title: "Professional Hub", icon: Wrench }
+    { title: "Tested Quality", icon: ShieldCheck },
+    { title: "Reliable Parts", icon: Package },
+    { title: "Rapid Service", icon: Zap },
+    { title: "Secure Logistics", icon: Globe },
+    { title: "New Hardware", icon: CheckCircle2 },
+    { title: "Expert Care", icon: Headphones },
+    { title: "Eco-Tech", icon: Leaf },
+    { title: "Service Hub", icon: Wrench }
   ];
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-['Rubik'] text-[#222] pb-14 md:pb-20">
+    <div className="min-h-screen bg-white font-['Rubik'] text-[#37474F] pb-14 md:pb-20">
       <SEO
-        title="About Us | Our Mission"
-        description="Learn about our commitment to hardware excellence, our journey, and the core pillars that drive our specialized services."
+        title="About Us | Our Commitment"
+        description="Learn about our commitment to printing excellence, our journey, and the core values that drive our professional services."
       />
 
       {/* PAGE HEADER */}
-      <div className="bg-[#f5f5f5] border-b border-[#dddddd]">
-        <div className="w-full px-4 md:px-6 xl:px-10 py-8 md:py-10">
-          <div className="flex flex-col gap-5">
-            <nav className="flex items-center gap-2 text-[12px] font-semibold text-[#7a7a7a]">
-              <Link to="/" className="hover:text-[#ff3b30] transition-colors">
+      <div className="bg-[#F8FAFA] border-b border-[#E0E7E7]">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-10 py-12 md:py-20">
+          <div className="flex flex-col gap-6">
+            <nav className="flex items-center gap-2 text-[12px] font-bold text-[#94A3B8] uppercase tracking-widest">
+              <Link to="/" className="hover:text-[#7EA1A1] transition-colors">
                 Home
               </Link>
-              <ChevronRight size={14} className="text-[#bdbdbd]" />
-              <span className="text-[#ff3b30]">About Us</span>
+              <ChevronRight size={14} className="text-[#E0E7E7]" />
+              <span className="text-[#7EA1A1]">About Us</span>
             </nav>
 
-            <div className="flex items-center gap-3 border-b border-[#dddddd] pb-4">
-              <ChevronsRight
-                size={26}
-                className="text-[#ff3b30] shrink-0"
-                strokeWidth={3}
-              />
-              <h1 className="text-[26px] md:text-[30px] font-extrabold uppercase tracking-tight text-[#1f2937]">
-                Hardware Excellence
+            <div className="max-w-3xl">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-[#37474F] mb-6">
+                Redefining the <br /> 
+                <span className="text-[#7EA1A1]">Printing Experience.</span>
               </h1>
+              <p className="text-lg md:text-xl leading-relaxed text-[#64748B] font-medium">
+                We bridge the gap between advanced technology and a seamless user experience, ensuring your workspace stays productive and efficient.
+              </p>
             </div>
-
-            <p className="max-w-[820px] text-[15px] md:text-[18px] leading-relaxed text-[#666]">
-              A new generation partner bridging the gap between complex technology and a seamless experience.
-            </p>
           </div>
         </div>
       </div>
 
-      <div className="w-full px-4 md:px-6 xl:px-10 py-8 md:py-10 space-y-8 md:space-y-10">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-10 py-12 md:py-20 space-y-16 md:space-y-24">
         {/* VISION SECTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          <div className="bg-white border border-[#e5e5e5] p-6 md:p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <ChevronsRight
-                size={24}
-                className="text-[#ff3b30] shrink-0"
-                strokeWidth={3}
-              />
-              <h2 className="text-[22px] md:text-[24px] font-extrabold uppercase tracking-tight text-[#222]">
-                The Vision
-              </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#7EA1A1]/10 text-[#7EA1A1] rounded-full mb-6 text-[11px] font-black uppercase tracking-widest">
+              Our Vision
             </div>
-
-            <h3 className="text-[28px] md:text-[34px] font-bold leading-tight text-[#1f2937] mb-4">
-              Built on trust and precision
-            </h3>
-
+            <h2 className="text-3xl md:text-4xl font-bold text-[#37474F] mb-6 tracking-tight">
+              Built on Transparency <br /> and Technical Precision.
+            </h2>
+            <p className="text-base md:text-lg text-[#64748B] leading-relaxed mb-8 font-medium">
+              Established in 2026, Harry's Printer Store was founded to simplify the acquisition of high-performance printing infrastructure. We believe that technology should be accessible, reliable, and straightforward.
+            </p>
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 h-[42px] px-5 bg-[#111] text-white text-[13px] font-semibold uppercase rounded-sm hover:bg-[#ff3b30] transition-all"
+              className="inline-flex items-center gap-3 bg-[#37474F] text-white px-8 py-4 text-[14px] font-bold uppercase tracking-wider rounded-xl hover:bg-[#7EA1A1] transition-all shadow-xl shadow-[#37474F]/10"
             >
-              Browse Catalog
-              <ArrowRight size={16} />
+              Explore Collection
+              <ArrowRight size={18} />
             </Link>
           </div>
-
-          <div className="bg-white border border-[#e5e5e5] p-6 md:p-8 space-y-5">
-            <p className="text-[15px] md:text-[17px] text-[#666] leading-relaxed">
-              Founded in 2026, Dash Printer shop was established to solve a singular challenge: making the acquisition of high-performance printing infrastructure simple, transparent, and absolutely authentic.
-            </p>
-            <p className="text-[15px] md:text-[17px] text-[#666] leading-relaxed">
-              As a new generation partner, we bridge the gap between complex industrial technology and a seamless, personalized experience. Technology should work as hard as you do.
-            </p>
+          <div className="bg-[#F8FAFA] p-8 md:p-12 rounded-[40px] border border-[#E0E7E7]/50">
+             <p className="text-base md:text-lg text-[#64748B] leading-relaxed font-medium italic">
+               "Our goal is to provide a destination where professionals can find top-tier hardware without complexity. Every piece of equipment we offer is selected for its durability and performance value."
+             </p>
           </div>
         </div>
 
         {/* CORE CAPABILITIES */}
-        <div className="bg-white border border-[#e5e5e5]">
-          <div className="flex items-center gap-3 border-b border-[#ededed] px-6 md:px-8 py-5">
-            <ChevronsRight
-              size={24}
-              className="text-[#ff3b30] shrink-0"
-              strokeWidth={3}
-            />
-            <h2 className="text-[22px] md:text-[24px] font-extrabold uppercase tracking-tight text-[#222]">
-              Core Capabilities
-            </h2>
+        <div className="space-y-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#37474F] mb-4">Core Capabilities</h2>
+            <div className="w-12 h-1 bg-[#7EA1A1] mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {capabilities.map((item, i) => (
               <div
                 key={i}
-                className={`p-6 md:p-8 ${i < 2 ? 'md:border-r border-[#ededed]' : ''}`}
+                className="p-8 md:p-10 bg-white border border-[#E0E7E7] rounded-[32px] hover:border-[#7EA1A1]/30 transition-all group"
               >
-                <div className="w-12 h-12 flex items-center justify-center rounded-sm bg-[#fff5f5] text-[#ff3b30] mb-5">
-                  <item.icon size={22} />
+                <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#F8FAFA] text-[#7EA1A1] mb-6 group-hover:bg-[#7EA1A1] group-hover:text-white transition-all duration-500">
+                  <item.icon size={26} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-[20px] font-bold text-[#222] mb-3">
+                <h3 className="text-xl font-bold text-[#37474F] mb-4">
                   {item.title}
                 </h3>
-                <p className="text-[15px] text-[#666] leading-relaxed">
+                <p className="text-[15px] text-[#64748B] leading-relaxed font-medium">
                   {item.desc}
                 </p>
               </div>
@@ -156,66 +134,52 @@ export default function About() {
           </div>
         </div>
 
-        {/* MISSION + COMMUNITY */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          <div className="bg-white border border-[#e5e5e5] p-6 md:p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Target className="text-[#ff3b30]" size={20} />
-              <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888]">
-                Our Mission
-              </span>
+        {/* MISSION + REACH */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="bg-[#37474F] p-10 md:p-14 rounded-[40px] text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+               <Target size={120} />
             </div>
-
-            <h3 className="text-[24px] md:text-[28px] font-bold text-[#222] mb-4">
-              The customer standard
-            </h3>
-
-            <p className="text-[15px] md:text-[17px] text-[#666] leading-relaxed">
-              To empower professionals with reliable, efficient, and sustainable hardware solutions through original products and certified advice. We believe in technology that works as hard as you do.
-            </p>
+            <div className="relative z-10">
+              <span className="text-[11px] font-black uppercase tracking-widest opacity-60 mb-4 block">Our Mission</span>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6">Empowering Modern Workspaces.</h3>
+              <p className="text-lg opacity-80 leading-relaxed font-normal">
+                To equip professionals with dependable and sustainable hardware solutions. We provide expert advice and high-quality products to ensure your operations never slow down.
+              </p>
+            </div>
           </div>
 
-          <div className="bg-white border border-[#e5e5e5] p-6 md:p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Users className="text-[#ff3b30]" size={20} />
-              <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888]">
-                Our Community
-              </span>
+          <div className="bg-[#7EA1A1] p-10 md:p-14 rounded-[40px] text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+               <Users size={120} />
             </div>
-
-            <h3 className="text-[24px] md:text-[28px] font-bold text-[#222] mb-4">
-              Nationwide reach
-            </h3>
-
-            <p className="text-[15px] md:text-[17px] text-[#666] leading-relaxed">
-              Expanding across the United States to deliver professional technology solutions with dependable logistics and long-term service value. Our network ensures you always have access to reliable support.
-            </p>
+            <div className="relative z-10">
+              <span className="text-[11px] font-black uppercase tracking-widest opacity-60 mb-4 block">Our Reach</span>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6">Nationwide Support Network.</h3>
+              <p className="text-lg opacity-80 leading-relaxed font-normal">
+                Serving the entire United States with a commitment to fast logistics and long-term service value. Our support team is always available to assist with your technical needs.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* ADVANTAGE SECTION */}
-        <div className="bg-white border border-[#e5e5e5]">
-          <div className="flex items-center gap-3 border-b border-[#ededed] px-6 md:px-8 py-5">
-            <ChevronsRight
-              size={24}
-              className="text-[#ff3b30] shrink-0"
-              strokeWidth={3}
-            />
-            <h2 className="text-[22px] md:text-[24px] font-extrabold uppercase tracking-tight text-[#222]">
-              The Dash Printer shop Advantage
-            </h2>
+        <div className="space-y-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#37474F] mb-4">The Advantage</h2>
+            <div className="w-12 h-1 bg-[#7EA1A1] mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {advantages.map((item, i) => (
               <div
                 key={i}
-                className="group flex flex-col items-center text-center gap-4 p-6 md:p-8 border-r border-b border-[#efefef] last:border-r-0"
+                className="group flex flex-col items-center text-center gap-4 p-8 bg-[#F8FAFA] rounded-3xl border border-transparent hover:border-[#7EA1A1]/30 hover:bg-white transition-all duration-500"
               >
-                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#f8f8f8] text-[#888] border border-[#e5e5e5] group-hover:text-[#ff3b30] group-hover:border-[#ff3b30] transition-all">
-                  <item.icon size={20} />
+                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-[#94A3B8] shadow-sm group-hover:text-[#7EA1A1] transition-all">
+                  <item.icon size={22} strokeWidth={1.5} />
                 </div>
-                <h4 className="text-[14px] md:text-[15px] font-semibold text-[#333]">
+                <h4 className="text-[14px] md:text-[15px] font-bold text-[#37474F]">
                   {item.title}
                 </h4>
               </div>

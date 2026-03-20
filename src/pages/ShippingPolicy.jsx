@@ -7,10 +7,10 @@ export default function ShippingPolicy() {
     <PolicyLayout
       title="Shipping Policy"
       subtitle="Read our shipping and delivery options, timeframes, and policies."
-      lastUpdated="February 11, 2026"
+      lastUpdated="March 21, 2026"
     >
       <p className="lead">
-        This Shipping & Delivery Policy is part of our Terms and Conditions ("Terms") and should be therefore read alongside our main Terms: <Link to="/terms-and-conditions">https://dashprintershop.com/terms-and-conditions</Link>.
+        This Shipping & Delivery Policy is part of our Terms and Conditions ("Terms") and should be therefore read alongside our main Terms: <Link to="/terms-and-conditions">https://harryprinterstore.shop/terms-and-conditions</Link>.
       </p>
       <p>
         Please carefully review our Shipping & Delivery Policy when purchasing our products. This policy will apply to any order you place with us.
@@ -37,7 +37,7 @@ export default function ShippingPolicy() {
 
       <h2>Questions About Returns?</h2>
       <p>
-        If you have questions about returns, please review our Return Policy: <Link to="/return-policy">https://dashprintershop.com/return-policy</Link>.
+        If you have questions about returns, please review our Return Policy: <Link to="/return-policy">https://harryprinterstore.shop/return-policy</Link>.
       </p>
 
       <hr />
@@ -45,7 +45,7 @@ export default function ShippingPolicy() {
       <p>If you have any further questions or comments, you may contact us by:</p>
       <div className="bg-gray-50 p-8 rounded-sm border border-[#e9e9e9] my-8 not-prose">
         <address className="not-italic text-gray-700 font-bold leading-relaxed space-y-3">
-          <p className="flex items-center gap-3 text-[#1447E6] font-extrabold ">Email: info@dashprintershop.com</p>
+          <p className="flex items-center gap-3 text-[#1447E6] font-extrabold ">Email: info@harryprinterstore.shop</p>
           <p className="flex items-center gap-3">
             <span className="text-gray-400 font-bold capitalize text-[10px] tracking-widest">Online contact form:</span>
             <Link to="/contact" className="text-[#1447E6] font-extrabold ml-2 underline">Contact Us</Link>

@@ -4,19 +4,19 @@ import {
   ChevronLeft,
   ChevronRight,
   ShoppingCart,
-  ChevronsRight,
+  Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../context/CartContext";
 
 const SkeletonSpotlightItem = () => (
-  <div className="block py-6 border-b border-[#efefef] animate-pulse last:border-0">
+  <div className="block py-6 border-b border-[#F1F5F5] animate-pulse last:border-0">
     <div className="flex items-center gap-4">
-      <div className="w-[90px] h-[78px] bg-[#eeeeee] rounded-sm shrink-0"></div>
+      <div className="w-[90px] h-[80px] bg-[#F8FAFA] rounded-md shrink-0"></div>
       <div className="min-w-0 flex-1">
-        <div className="h-3 w-16 bg-[#eeeeee] mb-2 rounded"></div>
-        <div className="h-4 w-full bg-[#eeeeee] mb-2 rounded"></div>
-        <div className="h-4 w-24 bg-[#eeeeee] rounded"></div>
+        <div className="h-3 w-16 bg-[#F8FAFA] mb-2 rounded"></div>
+        <div className="h-4 w-full bg-[#F8FAFA] mb-2 rounded"></div>
+        <div className="h-4 w-24 bg-[#F8FAFA] rounded"></div>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@ const SpotlightBlock = ({ title, data, colIndex, loading = false }) => {
 
   const variants = {
     enter: (direction) => ({
-      x: direction > 0 ? 20 : -20,
+      x: direction > 0 ? 15 : -15,
       opacity: 0,
     }),
     center: {
@@ -51,7 +51,7 @@ const SpotlightBlock = ({ title, data, colIndex, loading = false }) => {
       opacity: 1,
     },
     exit: (direction) => ({
-      x: direction < 0 ? 20 : -20,
+      x: direction < 0 ? 15 : -15,
       opacity: 0,
     }),
   };
@@ -71,34 +71,32 @@ const SpotlightBlock = ({ title, data, colIndex, loading = false }) => {
   const pageItems = (data || []).slice(page * perPage, page * perPage + perPage);
 
   return (
-    <div
-      className={`bg-white ${colIndex < 2 ? "lg:border-r border-[#e5e5e5]" : ""}`}
-    >
+    <div className={`bg-white p-6 md:p-8 ${colIndex < 2 ? "lg:border-r border-[#F1F5F5]" : ""}`}>
       {/* Block Header */}
-      <div className="flex items-center justify-between px-6 md:px-7 py-5 border-b border-[#ededed]">
-        <h3 className="text-[15px] font-semibold uppercase  text-[#282828]">
+      <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#F1F5F5]">
+        <h3 className="text-[16px] font-bold text-[#37474F] tracking-tight">
           {title}
         </h3>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={goPrev}
             disabled={page === 0}
-            className="w-6 h-6 rounded-full border border-[#d8d8d8] bg-transparent text-[#b8b8b8] hover:bg-[#ff3b30] hover:border-[#ff3b30] hover:text-white transition-all duration-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+            className="w-8 h-8 rounded-full border border-[#E0E7E7] bg-white text-[#94A3B8] hover:text-[#7EA1A1] hover:border-[#7EA1A1] transition-all flex items-center justify-center disabled:opacity-30"
           >
             <ChevronLeft size={16} />
           </button>
           <button
             onClick={goNext}
             disabled={page === maxPage}
-            className="w-6 h-6 rounded-full border border-[#d8d8d8] bg-transparent text-[#b8b8b8] hover:bg-[#ff3b30] hover:border-[#ff3b30] hover:text-white transition-all duration-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+            className="w-8 h-8 rounded-full border border-[#E0E7E7] bg-white text-[#94A3B8] hover:text-[#7EA1A1] hover:border-[#7EA1A1] transition-all flex items-center justify-center disabled:opacity-30"
           >
             <ChevronRight size={16} />
           </button>
         </div>
       </div>
 
-      <div className="px-6 md:px-7 overflow-hidden min-h-[400px] py-1">
+      <div className="overflow-hidden min-h-[380px]">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={page}
@@ -107,10 +105,7 @@ const SpotlightBlock = ({ title, data, colIndex, loading = false }) => {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 400, damping: 35 },
-              opacity: { duration: 0.2 },
-            }}
+            transition={{ duration: 0.3 }}
           >
             {loading ? (
               [...Array(3)].map((_, i) => <SkeletonSpotlightItem key={`skel-${i}`} />)
@@ -118,18 +113,18 @@ const SpotlightBlock = ({ title, data, colIndex, loading = false }) => {
               pageItems.map((p) => (
                 <div
                   key={p.id}
-                  className="block py-6 border-b border-[#f1f1f1] last:border-0 group"
+                  className="block py-5 border-b border-[#F1F5F5] last:border-0 group"
                 >
-                  <div className="flex items-center gap-4">
-                    {/* Thumbnail */}
+                  <div className="flex items-center gap-5">
+                    {/* Thumbnail with Tinted BG */}
                     <Link
                       to={`/product/${p.slug}`}
-                      className="w-[95px] h-[80px] flex items-center justify-center shrink-0 bg-[#f3f3f3] rounded-sm border border-[#e3e3e3] p-3 overflow-hidden transition-all duration-300 group-hover:bg-white group-hover:border-[#d7d7d7]"
+                      className="w-[100px] h-[85px] flex items-center justify-center shrink-0 bg-[#F8FAFA] rounded-md border border-[#F1F5F5] p-3 overflow-hidden transition-all group-hover:border-[#7EA1A1]/30 group-hover:bg-white"
                     >
                       <img
                         src={getImagePath(p.images)}
                         alt={p.name}
-                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110"
                         onError={(e) => {
                           e.currentTarget.src = "/logo/fabicon.png";
                         }}
@@ -139,42 +134,39 @@ const SpotlightBlock = ({ title, data, colIndex, loading = false }) => {
                     <div className="min-w-0 flex-1">
                       <Link
                         to={`/product/${p.slug}`}
-                        className="block text-[15px] font-medium text-[#2b2b2b] line-clamp-2 group-hover:text-[#ff3b30] transition-colors leading-snug mb-2"
+                        className="block text-[14px] font-semibold text-[#37474F] line-clamp-1 group-hover:text-[#7EA1A1] transition-colors leading-tight mb-1.5"
                       >
                         {p.name}
                       </Link>
 
-                      <div className="flex items-center gap-2 mb-3 flex-wrap">
-                        <span className="text-[16px] font-bold text-[#ff3b30]">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-[15px] font-bold text-[#7EA1A1]">
                           ${Number(p?.price || 0).toFixed(2)}
                         </span>
                         {p.old_price && (
-                          <span className="text-[13px] text-[#9b9b9b] line-through">
+                          <span className="text-[12px] text-[#94A3B8] line-through decoration-1">
                             ${p.old_price}
                           </span>
                         )}
                       </div>
 
-                      <div className="flex items-center gap-4 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
                         <button
                           onClick={(e) => {
                             e.preventDefault();
                             addToCart(p);
                           }}
-                          className="flex items-center gap-2 text-[11px] font-semibold uppercase text-[#666] hover:text-[#ff3b30] transition-colors"
+                          className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-[#64748B] hover:text-[#7EA1A1] transition-colors"
                         >
-                          <ShoppingCart size={13} />
-                          Add to Cart
+                          <ShoppingCart size={12} />
+                          Add
                         </button>
-
-                        <span className="w-px h-3 bg-[#dddddd]"></span>
-
                         <button
                           onClick={(e) => {
                             e.preventDefault();
                             navigate(`/product/${p.slug}`);
                           }}
-                          className="text-[11px] font-semibold uppercase text-[#666] hover:text-[#ff3b30] transition-colors"
+                          className="text-[10px] font-black uppercase tracking-wider text-[#64748B] hover:text-[#7EA1A1] transition-colors"
                         >
                           Details
                         </button>
@@ -184,8 +176,8 @@ const SpotlightBlock = ({ title, data, colIndex, loading = false }) => {
                 </div>
               ))
             ) : (
-              <div className="px-2 py-20 text-[#999] text-[12px] font-bold uppercase tracking-[0.18em] text-center">
-                No products found.
+              <div className="py-20 text-[#94A3B8] text-[12px] font-medium text-center">
+                No items currently trending.
               </div>
             )}
           </motion.div>
@@ -208,21 +200,20 @@ export default function SpotlightSection({
   };
 
   return (
-    <section className="w-full font-['Rubik'] py-8 md:py-10 bg-[#f5f5f5]">
-      <div className="w-full px-4 md:px-6 xl:px-26">
+    <section className="w-full font-['Rubik'] py-16 md:py-20 bg-white">
+      <div className="max-w-[1800px] mx-auto px-6">
         {/* Section Heading */}
-        <div className="flex items-center gap-3 border-b border-[#dddddd] pb-4 mb-8">
-          <ChevronsRight
-            size={26}
-            className="text-[#ff3b30] shrink-0"
-            strokeWidth={3}
-          />
-          <h2 className="text-[24px] font-semibold uppercase  text-[#282828]">
-            Trending Collections
+        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
+          <div className="flex items-center gap-3 mb-4 text-[#7EA1A1]">
+            <Sparkles size={20} />
+            <span className="text-[11px] font-black uppercase tracking-[0.3em]">Trending Now</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-[#37474F] tracking-tight">
+            Spotlight Collections
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 border border-[#e5e5e5] bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-3 border border-[#F1F5F5] rounded-[32px] overflow-hidden">
           <SpotlightBlock
             title="New Arrivals"
             data={normalizeList(newArrivals)}

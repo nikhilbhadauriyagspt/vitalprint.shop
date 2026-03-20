@@ -2,14 +2,14 @@
 
 :root {
   --font-sans: "Rubik", sans-serif;
-  --primary: #FF2D37;
-  --primary-hover: #e62932;
-  --secondary: #FF2D37;
-  --accent: #34d399;
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --primary: #7EA1A1;
+  --primary-hover: #6B8E8E;
+  --secondary: #94A3B8;
+  --accent: #A3BFBF;
+  --background: #F8FAFA;
+  --foreground: #37474F;
   --card: #ffffff;
-  --border: #f1f5f9;
+  --border: #E0E7E7;
   font-family: var(--font-sans);
 }
 
@@ -17,11 +17,11 @@
   --font-sans: "Rubik", sans-serif;
   --font-urbanist: "Rubik", sans-serif;
   --font-snpro: "Rubik", sans-serif;
-  --color-primary: #FF2D37;
-  --color-primary-hover: #e62932;
-  --color-secondary: #FF2D37;
-  --color-accent: #34d399;
-  --color-brand: #FF2D37;
+  --color-primary: #7EA1A1;
+  --color-primary-hover: #6B8E8E;
+  --color-secondary: #94A3B8;
+  --color-accent: #A3BFBF;
+  --color-brand: #7EA1A1;
 }
 
 body {
@@ -29,8 +29,8 @@ body {
   font-family: "Rubik", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
-  color: #0f172a;
+  background-color: #F8FAFA;
+  color: #37474F;
 }
 
 @layer utilities {
@@ -46,7 +46,7 @@ body {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-rose-600;
   }
 
-  .shadow-premium {
+  .shadow-modern {
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 20px 25px -5px rgba(0, 0, 0, 0.02);
   }
 

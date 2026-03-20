@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
 import {
   Mail,
   MapPin,
   Send,
-  ArrowRight,
   Loader2,
   CheckCircle2,
-  Headphones,
-  ChevronDown,
+  Phone,
   Clock,
-  Globe,
-  ChevronRight,
-  ChevronsRight,
+  ChevronDown
 } from 'lucide-react';
 import API_BASE_URL from '../config';
-import { Link } from 'react-router-dom';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -64,240 +59,157 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-['Rubik'] text-[#222] pb-14 md:pb-20">
-      <SEO
-        title="Contact Us | Printer Mania Support"
-        description="Connect with the Printer Mania team for support, orders, or hardware inquiries."
-      />
+    <div className="min-h-screen bg-white font-['Rubik'] text-[#37474F] pb-20">
+      <SEO title="Contact Us | Harry's Printer Store" />
 
-      {/* PAGE HEADER */}
-      <div className="bg-[#f5f5f5] border-b border-[#dddddd]">
-        <div className="w-full px-4 md:px-6 xl:px-10 py-8 md:py-10">
-          <div className="flex flex-col gap-5">
-            <nav className="flex items-center gap-2 text-[12px] font-semibold text-[#7a7a7a]">
-              <Link to="/" className="hover:text-[#ff3b30] transition-colors">
-                Home
-              </Link>
-              <ChevronRight size={14} className="text-[#bdbdbd]" />
-              <span className="text-[#ff3b30]">Contact</span>
-            </nav>
-
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-[#dddddd] pb-4">
-              <div className="flex items-center gap-3">
-                <ChevronsRight
-                  size={26}
-                  className="text-[#ff3b30] shrink-0"
-                  strokeWidth={3}
-                />
-                <h1 className="text-[26px] md:text-[30px] font-extrabold uppercase tracking-tight text-[#1f2937]">
-                  Get In Touch
-                </h1>
-              </div>
-
-              <div className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#666]">
-                <Headphones size={16} className="text-[#ff3b30]" />
-                <span>Support Active</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* --- SIMPLE HEADER --- */}
+      <div className="py-16 bg-[#F8FAFA] border-b border-[#E0E7E7] text-center px-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#37474F] mb-4">Contact Us</h1>
+        <p className="text-[#64748B] max-w-2xl mx-auto">Have questions? We're here to help. Send us a message and we'll get back to you as soon as possible.</p>
       </div>
 
-      <div className="w-full px-4 md:px-6 xl:px-10 py-8 md:py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-          {/* LEFT INFO */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white border border-[#e5e5e5] p-6 md:p-8">
-              <div className="w-12 h-12 flex items-center justify-center rounded-sm bg-[#fff5f5] text-[#ff3b30] mb-5">
-                <Mail size={22} />
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          
+          {/* --- INFO COLUMN --- */}
+          <div className="space-y-8">
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-[#7EA1A1]/10 rounded-full flex items-center justify-center text-[#7EA1A1] shrink-0">
+                <Mail size={20} />
               </div>
-
-              <h4 className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888] mb-3">
-                Email Support
-              </h4>
-
-              <p className="text-[22px] md:text-[24px] font-bold text-[#222] leading-tight break-words">
-                info@dashprintershop.com
-              </p>
-
-              <div className="mt-5 inline-flex items-center gap-2 text-[12px] font-medium text-emerald-600 uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
-                <Clock size={12} />
-                <span>Response in 24 hours</span>
+              <div>
+                <h4 className="font-bold text-sm uppercase tracking-wider text-[#94A3B8] mb-1">Email</h4>
+                <p className="text-[#37474F] font-medium">info@harryprinterstore.shop</p>
               </div>
             </div>
 
-            <div className="bg-white border border-[#e5e5e5] p-6 md:p-8">
-              <div className="w-12 h-12 flex items-center justify-center rounded-sm bg-[#fff5f5] text-[#ff3b30] mb-5">
-                <MapPin size={22} />
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-[#7EA1A1]/10 rounded-full flex items-center justify-center text-[#7EA1A1] shrink-0">
+                <MapPin size={20} />
               </div>
+              <div>
+                <h4 className="font-bold text-sm uppercase tracking-wider text-[#94A3B8] mb-1">Address</h4>
+                <p className="text-[#37474F] font-medium leading-relaxed">
+                  2700 Bell Ave, <br />
+                  Des Moines, IA 50321, USA
+                </p>
+              </div>
+            </div>
 
-              <h4 className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888] mb-3">
-                Store Location
-              </h4>
-
-              <p className="text-[20px] md:text-[22px] font-bold text-[#222] leading-snug">
-                78 Holland Ave,
-                <br />
-                Morgantown, WV 26501,
-                <br />
-                USA
-              </p>
-
-              <div className="mt-5 inline-flex items-center gap-2 text-[12px] font-medium text-[#ff3b30] uppercase bg-[#fff5f5] px-3 py-1 rounded-full border border-[#ffd9dc]">
-                <Globe size={12} />
-                <span>United States Delivery</span>
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-[#7EA1A1]/10 rounded-full flex items-center justify-center text-[#7EA1A1] shrink-0">
+                <Clock size={20} />
+              </div>
+              <div>
+                <h4 className="font-bold text-sm uppercase tracking-wider text-[#94A3B8] mb-1">Hours</h4>
+                <p className="text-[#37474F] font-medium">Mon - Fri: 9am - 6pm</p>
               </div>
             </div>
           </div>
 
-          {/* RIGHT FORM */}
-          <div className="lg:col-span-8">
-            <div className="bg-white border border-[#e5e5e5] p-6 md:p-8">
-              {status === 'success' ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-10 md:py-14"
-                >
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 size={36} />
-                  </div>
-
-                  <h2 className="text-[28px] md:text-[34px] font-bold text-[#222] mb-4">
-                    Message Sent Successfully
-                  </h2>
-
-                  <p className="text-[#666] text-[15px] md:text-[17px] mb-8 max-w-[560px] mx-auto leading-relaxed">
-                    Thank you for reaching out. Our team will review your request and get back to you shortly.
-                  </p>
-
-                  <button
-                    onClick={() => setStatus(null)}
-                    className="h-[44px] px-8 bg-[#111] text-white text-[13px] font-semibold uppercase rounded-sm hover:bg-[#ff3b30] transition-all"
+          {/* --- FORM COLUMN --- */}
+          <div className="lg:col-span-2">
+            <div className="bg-white border border-[#E0E7E7] rounded-3xl p-8 md:p-10 shadow-sm">
+              <AnimatePresence mode="wait">
+                {status === 'success' ? (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-center py-10"
                   >
-                    Send Another Message
-                  </button>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 md:space-y-7">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-                    <div>
-                      <label className="block text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888] mb-3">
-                        Full Name
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        placeholder="John Doe"
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        className="w-full h-[48px] px-4 bg-white border border-[#dcdcdc] rounded-sm outline-none text-[14px] font-medium text-[#222] focus:border-[#ff3b30] transition-all placeholder:text-[#999]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888] mb-3">
-                        Email Address
-                      </label>
-                      <input
-                        required
-                        type="email"
-                        placeholder="email@example.com"
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className="w-full h-[48px] px-4 bg-white border border-[#dcdcdc] rounded-sm outline-none text-[14px] font-medium text-[#222] focus:border-[#ff3b30] transition-all placeholder:text-[#999]"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-                    <div>
-                      <label className="block text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888] mb-3">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="Your phone number"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className="w-full h-[48px] px-4 bg-white border border-[#dcdcdc] rounded-sm outline-none text-[14px] font-medium text-[#222] focus:border-[#ff3b30] transition-all placeholder:text-[#999]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888] mb-3">
-                        Subject
-                      </label>
-                      <div className="relative">
-                        <select
-                          value={formData.subject}
-                          onChange={(e) =>
-                            setFormData({ ...formData, subject: e.target.value })
-                          }
-                          className="w-full h-[48px] px-4 pr-10 bg-white border border-[#dcdcdc] rounded-sm outline-none text-[14px] font-medium text-[#222] focus:border-[#ff3b30] transition-all appearance-none cursor-pointer"
-                        >
-                          <option>General Inquiry</option>
-                          <option>Technical Support</option>
-                          <option>Order Tracking</option>
-                          <option>Bulk Orders</option>
-                        </select>
-                        <ChevronDown
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#999] pointer-events-none"
-                          size={16}
+                    <CheckCircle2 size={48} className="text-emerald-500 mx-auto mb-4" />
+                    <h2 className="text-2xl font-bold text-[#37474F] mb-2">Message Sent!</h2>
+                    <p className="text-[#64748B] mb-8">We've received your inquiry and will respond shortly.</p>
+                    <button
+                      onClick={() => setStatus(null)}
+                      className="px-8 py-3 bg-[#37474F] text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-[#7EA1A1] transition-all"
+                    >
+                      Send Another
+                    </button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-[#94A3B8] uppercase ml-1">Your Name</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Enter name"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full h-12 px-4 bg-[#F8FAFA] border border-[#E0E7E7] rounded-xl outline-none focus:border-[#7EA1A1] transition-all"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-[#94A3B8] uppercase ml-1">Email Address</label>
+                        <input
+                          required
+                          type="email"
+                          placeholder="Enter email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full h-12 px-4 bg-[#F8FAFA] border border-[#E0E7E7] rounded-xl outline-none focus:border-[#7EA1A1] transition-all"
                         />
                       </div>
                     </div>
-                  </div>
 
-                  <div>
-                    <label className="block text-[12px] font-semibold uppercase tracking-[0.18em] text-[#888] mb-3">
-                      Message
-                    </label>
-                    <textarea
-                      required
-                      rows="6"
-                      placeholder="How can we help you?"
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      className="w-full p-4 bg-white border border-[#dcdcdc] rounded-sm outline-none text-[14px] font-medium text-[#222] focus:border-[#ff3b30] transition-all resize-none placeholder:text-[#999]"
-                    ></textarea>
-                  </div>
-
-                  <button
-                    disabled={loading}
-                    className="w-full h-[48px] bg-[#111] text-white flex items-center justify-center gap-2 text-[13px] font-semibold uppercase rounded-sm hover:bg-[#ff3b30] transition-all disabled:opacity-50 group"
-                  >
-                    {loading ? (
-                      <Loader2 className="animate-spin" size={18} />
-                    ) : (
-                      <>
-                        <Send size={16} />
-                        Send Message
-                        <ArrowRight
-                          size={16}
-                          className="group-hover:translate-x-1 transition-transform"
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-[#94A3B8] uppercase ml-1">Phone (Optional)</label>
+                        <input
+                          type="tel"
+                          placeholder="Enter phone"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className="w-full h-12 px-4 bg-[#F8FAFA] border border-[#E0E7E7] rounded-xl outline-none focus:border-[#7EA1A1] transition-all"
                         />
-                      </>
-                    )}
-                  </button>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-[#94A3B8] uppercase ml-1">Subject</label>
+                        <div className="relative">
+                          <select
+                            value={formData.subject}
+                            onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                            className="w-full h-12 px-4 bg-[#F8FAFA] border border-[#E0E7E7] rounded-xl outline-none focus:border-[#7EA1A1] appearance-none cursor-pointer"
+                          >
+                            <option>General Inquiry</option>
+                            <option>Technical Support</option>
+                            <option>Order Status</option>
+                          </select>
+                          <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94A3B8] pointer-events-none" />
+                        </div>
+                      </div>
+                    </div>
 
-                  {status === 'error' && (
-                    <p className="text-center text-red-500 text-[12px] font-semibold uppercase tracking-[0.16em]">
-                      Error sending message. Please try again.
-                    </p>
-                  )}
-                </form>
-              )}
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-[#94A3B8] uppercase ml-1">Message</label>
+                      <textarea
+                        required
+                        rows="5"
+                        placeholder="How can we help you?"
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="w-full p-4 bg-[#F8FAFA] border border-[#E0E7E7] rounded-xl outline-none focus:border-[#7EA1A1] transition-all resize-none"
+                      ></textarea>
+                    </div>
+
+                    <button
+                      disabled={loading}
+                      className="w-full h-14 bg-[#37474F] text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-[#7EA1A1] transition-all disabled:opacity-50"
+                    >
+                      {loading ? <Loader2 className="animate-spin mx-auto" size={20} /> : 'Send Message'}
+                    </button>
+
+                    {status === 'error' && (
+                      <p className="text-center text-red-500 text-xs font-bold mt-2">Error sending message. Please try again.</p>
+                    )}
+                  </form>
+                )}
+              </AnimatePresence>
             </div>
           </div>
+
         </div>
       </div>
     </div>

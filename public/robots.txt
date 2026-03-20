@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dashprintershop.com/sitemap.xml
+Sitemap: https://harryprinterstore.shop/sitemap.xml

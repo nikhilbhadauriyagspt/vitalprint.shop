@@ -31,7 +31,7 @@ export default function ProductAccordion({
               {title} <span className="text-[#1447E6]">{subtitle}.</span>
             </h2>
             <p className="text-slate-500 font-medium max-w-xl text-sm md:text-base leading-relaxed">
-              A curated collection of proven performance models and original accessories.
+              A curated collection of proven performance models and essential accessories.
             </p>
           </div>
           
@@ -58,7 +58,7 @@ export default function ProductAccordion({
                     src={p.images ? (typeof p.images === 'string' ? JSON.parse(p.images)[0] : p.images[0]) : ''} 
                     alt="" 
                     className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-110"
-                    onError={(e) => { e.target.src = "https://via.placeholder.com/400x400?text=HP+Hardware"; }}
+                    onError={(e) => { e.target.src = "https://via.placeholder.com/400x400?text=Hardware"; }}
                   />
                 </Link>
                 
@@ -74,7 +74,7 @@ export default function ProductAccordion({
               {/* Minimal Info */}
               <div className="space-y-4">
                 <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">HP Series</p>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Series</p>
                   <Link to={`/product/${p.slug}`}>
                     <h3 className="text-base font-bold text-slate-800 line-clamp-2 leading-snug group-hover:text-[#1447E6] transition-colors">
                       {p.name}
@@ -103,7 +103,7 @@ export default function ProductAccordion({
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-center md:text-left space-y-2">
               <h3 className="text-2xl md:text-3xl font-black text-white leading-tight">Need a professional quote?</h3>
-              <p className="text-white/70 font-medium max-w-md">Our certified HP consultants provide customized solutions for enterprises and large teams.</p>
+              <p className="text-white/70 font-medium max-w-md">Our consultants provide customized solutions for enterprises and large teams.</p>
             </div>
             
             <div className="flex flex-col sm:flex-row items-center gap-4">

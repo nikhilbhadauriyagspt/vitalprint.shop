@@ -10,8 +10,8 @@ import {
 const features = [
   {
     icon: Award,
-    title: "HP Supply Partner",
-    desc: "100% Genuine HP Inventory",
+    title: "Supply Partner",
+    desc: "Reliable Hardware Inventory",
     accent: "bg-amber-50 text-amber-600"
   },
   {
@@ -23,7 +23,7 @@ const features = [
   {
     icon: ShieldCheck,
     title: "Elite Protection",
-    desc: "Comprehensive Brand Warranty",
+    desc: "Comprehensive Warranty",
     accent: "bg-amber-50 text-amber-600"
   },
   {

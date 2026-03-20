@@ -47,7 +47,7 @@ export default function SpecialsPromotions() {
               </h3>
 
               <p className="text-slate-600 text-base md:text-lg mb-8 leading-relaxed font-medium">
-                Up to <span className="text-[#1447E6] font-bold">60% off</span> on select premium HP printers and authentic supplies.
+                Up to <span className="text-[#1447E6] font-bold">60% off</span> on select high-performance printers and supplies.
               </p>
 
               <Link

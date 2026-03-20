@@ -26,7 +26,7 @@ export default function BestSellers({ products = [] }) {
       const imgs = typeof images === 'string' ? JSON.parse(images) : images;
       if (Array.isArray(imgs) && imgs.length > 0) return `/${imgs[0]}`;
     } catch (e) { }
-    return "https://via.placeholder.com/400x400?text=Dash Printer shop";
+    return "https://via.placeholder.com/400x400?text=Harry's Printer Store";
   };
 
   return (

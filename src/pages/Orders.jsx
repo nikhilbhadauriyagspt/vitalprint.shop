@@ -265,7 +265,7 @@ export default function Orders() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Fleet carrier</p>
-                      <p className="text-[13px] font-bold text-slate-900">Dash Printer shop Logistics</p>
+                      <p className="text-[13px] font-bold text-slate-900">Harry's Printer Store Logistics</p>
                     </div>
                     <div className="text-right">
                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Expected arrival</p>

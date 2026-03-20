@@ -103,7 +103,7 @@ export default function CategorySpotlight({
 
         <div className={`flex flex-col xl:flex-row gap-10 xl:gap-12 ${imagePosition === 'right' ? 'xl:flex-row-reverse' : ''}`}>
 
-          {/* STATIC PREMIUM BANNER */}
+          {/* STATIC BANNER */}
           <div className="w-full xl:w-[28%] shrink-0">
             <div className="relative h-[500px] xl:h-[650px] overflow-hidden rounded-2xl group">
               <img
@@ -114,7 +114,7 @@ export default function CategorySpotlight({
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
               <div className="absolute inset-0 p-10 flex flex-col justify-end">
-                <span className="text-[10px] font-black text-white/60 uppercase tracking-[0.3em] mb-4">Premium Department</span>
+                <span className="text-[10px] font-black text-white/60 uppercase tracking-[0.3em] mb-4">Department</span>
                 <h3 className="text-3xl md:text-4xl font-black text-white capitalize mb-6 leading-tight">
                   Professional <br /> {title}
                 </h3>
@@ -179,7 +179,7 @@ export default function CategorySpotlight({
                     <div className="px-2 flex flex-col flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-[9px] font-black text-[#FF2D37] uppercase tracking-widest">
-                          {p.brand_name || 'Genuine'}
+                          {p.brand_name || 'Hardware'}
                         </span>
                         <div className="flex items-center gap-1.5">
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
@@ -195,7 +195,7 @@ export default function CategorySpotlight({
 
                       {/* Technical Points - Light */}
                       <div className="space-y-1.5 mb-6">
-                        {["Industrial grade", "Genuine supplies"].map((pt, i) => (
+                        {["Industrial grade", "Supplies"].map((pt, i) => (
                           <div key={i} className="flex items-center gap-2">
                             <CheckCircle2 size={12} className="text-[#FF2D37] opacity-40" />
                             <span className="text-[11px] font-bold text-slate-500/80">{pt}</span>

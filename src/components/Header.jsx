@@ -14,8 +14,7 @@ import {
   Mail,
   ArrowRight,
   Headphones,
-  Home,
-  Lightbulb,
+  Phone,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -25,7 +24,6 @@ export default function Header() {
   const [user, setUser] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [isSearchCatOpen, setIsSearchCatOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -34,7 +32,6 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const searchRef = useRef(null);
-  const searchCatRef = useRef(null);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/categories`)
@@ -63,14 +60,9 @@ export default function Header() {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setIsSearchFocused(false);
       }
-      if (searchCatRef.current && !searchCatRef.current.contains(event.target)) {
-        setIsSearchCatOpen(false);
-        setIsCategoryOpen(false);
-      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       window.removeEventListener('storage', checkUser);
       document.removeEventListener('mousedown', handleClickOutside);
@@ -105,7 +97,7 @@ export default function Header() {
   }, [searchValue]);
 
   const navLinks = [
-    { name: 'Home', path: '/', icon: Home },
+    { name: 'Home', path: '/' },
     { name: 'Shop', path: '/shop' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
@@ -134,330 +126,208 @@ export default function Header() {
 
   return (
     <header className="w-full font-['Rubik'] relative z-[1000]">
-      {/* TOP BLACK STRIP */}
-      <div className="hidden xl:block bg-[#111111] text-white">
-        <div className="max-w-[1800px] mx-auto px-6 2xl:px-10 h-[42px] flex items-center justify-between">
-          <div className="flex items-center text-[14px]">
-            <span className="text-white/90">Welcome to Printer online Store</span>
+      {/* LAYER 1: WHITE BACKGROUND - LOGO, SEARCH, ICONS */}
+      <div className="bg-white">
+        <div className="max-w-[1800px] mx-auto px-4 md:px-6 py-4 md:py-6 flex items-center justify-between gap-6 md:gap-12">
+          {/* LOGO */}
+          <Link to="/" className="shrink-0">
+            <img src="/logo/logo.png" alt="Logo" className="h-8 md:h-11 object-contain" />
+          </Link>
 
+          {/* SEARCH BAR */}
+          <div ref={searchRef} className="hidden lg:flex flex-1 max-w-[700px] relative">
+            <div className="w-full relative group">
+              <div className={`relative h-[46px] rounded-lg border transition-all duration-300 flex items-center bg-[#F8FAFA] ${isSearchFocused ? 'border-[#7EA1A1] bg-white ring-2 ring-[#7EA1A1]/10' : 'border-[#E0E7E7] hover:border-[#7EA1A1]/50'}`}>
+                <input
+                  type="text"
+                  placeholder="Search for products, brands..."
+                  className="w-full h-full bg-transparent pl-5 pr-12 text-[14px] text-[#37474F] outline-none placeholder:text-[#94A3B8] font-medium"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearchTrigger()}
+                />
+                <button 
+                  onClick={() => handleSearchTrigger()}
+                  className="absolute right-0 h-full w-[50px] flex items-center justify-center text-[#94A3B8] hover:text-[#7EA1A1] transition-colors"
+                >
+                  <Search size={20} />
+                </button>
+              </div>
 
-
-
-            <span className="mx-6 h-4 w-px bg-white/20" />
-
-            <a
-              href="mailto:info@dashprintershop.com"
-              className="flex items-center gap-2 text-white hover:text-[#ff2d37] transition-colors"
-            >
-              <Mail size={14} className="text-[#ff2d37]" />
-              <span className="text-white/90">info@dashprintershop.com</span>
-            </a>
-          </div>
-
-          <div className="flex items-center gap-5 text-white/85 text-[13px]">
-            <Link
-              to="/orders"
-              className="flex items-center gap-2 text-white hover:text-[#ff2d37] transition-colors"
-            >
-              <ShoppingCart size={14} className="text-[#ff2d37]" />
-              <span className="font-medium">Track Your Order</span>
-            </Link>
-
-          </div>
-        </div>
-      </div>
-
-      {/* MAIN HEADER */}
-      <div className="bg-[#f5f5f5] border-b border-[#e5e5e5]">
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 py-7">
-          <div className="flex items-center justify-between gap-6 xl:gap-10">
-            {/* MOBILE MENU BUTTON */}
-            <button
-              className="xl:hidden w-11 h-11 rounded-md border border-[#dddddd] bg-white text-[#222] flex items-center justify-center"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu size={20} />
-            </button>
-
-            {/* LOGO */}
-            <Link to="/" className="shrink-0 flex items-center">
-              <img
-                src="/logo/logo.png"
-                alt="Dash Printer shop"
-                className="h-9 md:h-10 lg:h-11 object-contain"
-              />
-            </Link>
-
-            {/* SEARCH */}
-            <div
-              ref={searchRef}
-              className="hidden xl:flex flex-1 max-w-[700px] 2xl:max-w-[760px] relative"
-            >
-              <div className="w-full relative">
-                <div className="relative h-[44px] rounded-full border border-[#d9d9d9] bg-white overflow-hidden">
-                  <input
-                    type="text"
-                    placeholder="Search the store"
-                    className="w-full h-full bg-transparent pl-7 pr-20 text-[15px] text-[#222] placeholder:text-[#9c9c9c] outline-none"
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    onFocus={() => setIsSearchFocused(true)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSearchTrigger()}
-                  />
-
-                  <button
-                    onClick={() => handleSearchTrigger()}
-                    className="absolute right-[4px] top-1/2 -translate-y-1/2 w-[36px] h-[36px] rounded-full bg-[#111111] text-white flex items-center justify-center hover:bg-[#ff2d37] transition-colors"
+              <AnimatePresence>
+                {isSearchFocused && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-[calc(100%+8px)] left-0 w-full bg-white border border-[#E0E7E7] rounded-xl shadow-2xl z-[2200] overflow-hidden"
                   >
-                    <Search size={18} strokeWidth={2.5} />
-                  </button>
-                </div>
-
-                <AnimatePresence>
-                  {isSearchFocused && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-[calc(100%+10px)] left-0 w-full bg-white border border-[#ececec] rounded-2xl shadow-2xl overflow-hidden z-[2200]"
-                    >
-                      <div className="p-5">
-                        {searchValue.length > 1 ? (
-                          <>
-                            <h4 className="text-[11px] font-black text-[#9b9b9b] uppercase tracking-[0.16em] mb-4">
-                              Best Matches
-                            </h4>
-
-                            {isLoading ? (
-                              <div className="space-y-3">
-                                {[1, 2, 3].map((i) => (
-                                  <div
-                                    key={i}
-                                    className="h-[62px] rounded-xl bg-[#f3f3f3] animate-pulse"
-                                  />
-                                ))}
-                              </div>
-                            ) : searchResults.length > 0 ? (
-                              <div className="space-y-2 max-h-[360px] overflow-y-auto custom-scrollbar pr-1">
-                                {searchResults.map((product) => (
-                                  <Link
-                                    key={product.id}
-                                    to={`/product/${product.slug}`}
-                                    onClick={() => setIsSearchFocused(false)}
-                                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-[#fafafa] border border-transparent hover:border-[#ededed] transition-all"
-                                  >
-                                    <div className="w-14 h-14 rounded-lg border border-[#ededed] bg-white flex items-center justify-center overflow-hidden shrink-0">
-                                      <img
-                                        src={getImagePath(product)}
-                                        alt={product.name}
-                                        className="w-full h-full object-contain p-1.5"
-                                        onError={(e) => {
-                                          e.target.src = '/logo/fabicon.png';
-                                        }}
-                                      />
-                                    </div>
-                                    <div className="min-w-0">
-                                      <p className="text-[14px] font-semibold text-[#222] truncate">
-                                        {product.name}
-                                      </p>
-                                      <p className="text-[15px] font-bold text-[#ff2d37] mt-0.5">
-                                        ${product.price}
-                                      </p>
-                                    </div>
-                                  </Link>
-                                ))}
-                              </div>
-                            ) : (
-                              <p className="text-[14px] text-[#777] py-8 text-center">
-                                No matches for "{searchValue}"
-                              </p>
-                            )}
-                          </>
-                        ) : (
-                          <>
-                            <h4 className="text-[11px] font-black text-[#9b9b9b] uppercase tracking-[0.16em] mb-4">
-                              Popular Searches
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                              {[
-                                'EcoTank',
-                                'LaserJet Pro',
-                                'Ink Cartridges',
-                                'Scanners',
-                                'Brother Printers',
-                              ].map((tag) => (
-                                <button
-                                  key={tag}
-                                  onClick={() => handleSearchTrigger(tag)}
-                                  className="px-4 py-2 rounded-full border border-[#e2e2e2] text-[13px] font-semibold text-[#555] hover:border-[#ff2d37] hover:text-[#ff2d37] transition-all"
+                    <div className="p-4">
+                      {searchValue.length > 1 ? (
+                        <>
+                          <div className="flex items-center justify-between mb-4 px-2">
+                            <span className="text-[11px] font-bold text-[#94A3B8] uppercase">Top Results</span>
+                            {isLoading && <div className="w-4 h-4 border-2 border-[#7EA1A1]/20 border-t-[#7EA1A1] rounded-full animate-spin" />}
+                          </div>
+                          {searchResults.length > 0 ? (
+                            <div className="space-y-1 max-h-[350px] overflow-y-auto custom-scrollbar">
+                              {searchResults.map((product) => (
+                                <Link
+                                  key={product.id}
+                                  to={`/product/${product.slug}`}
+                                  onClick={() => setIsSearchFocused(false)}
+                                  className="flex items-center gap-4 p-2 rounded-lg hover:bg-[#F8FAFA] transition-all group/item"
                                 >
-                                  {tag}
-                                </button>
+                                  <div className="w-12 h-12 rounded bg-white border border-[#E0E7E7] flex items-center justify-center shrink-0">
+                                    <img src={getImagePath(product)} alt="" className="w-full h-full object-contain p-1.5" />
+                                  </div>
+                                  <div className="min-w-0">
+                                    <p className="text-[14px] font-semibold text-[#37474F] truncate group-hover/item:text-[#7EA1A1]">{product.name}</p>
+                                    <p className="text-[14px] font-bold text-[#7EA1A1] mt-0.5">${product.price}</p>
+                                  </div>
+                                </Link>
                               ))}
                             </div>
-                          </>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </div>
-
-            {/* EMAIL + ICONS */}
-            <div className="hidden lg:flex items-center gap-8 xl:gap-10 shrink-0">
-              <div className="hidden 2xl:flex items-center gap-4">
-                <div className="w-11 h-11 rounded-full flex items-center justify-center text-[#111]">
-                  <Mail size={38} strokeWidth={1.5} />
-                </div>
-                <div>
-                  <p className="text-[13px] text-[#777] leading-none mb-1">Email Support:</p>
-                  <p className="text-[16px] font-semibold tracking-wide text-[#111]">
-                    info@dashprintershop.com
-                  </p>
-                </div>
-              </div>
-
-              <Link
-                to={user ? '/profile' : '/login'}
-                className="flex flex-col items-center justify-center text-[#222] hover:text-[#ff2d37] transition-colors"
-              >
-                <User size={24} strokeWidth={2} />
-                <span className="mt-2 text-[14px]">My Account</span>
-              </Link>
-
-              <Link
-                to="/wishlist"
-                className="relative flex flex-col items-center justify-center text-[#222] hover:text-[#ff2d37] transition-colors"
-              >
-                <Heart size={24} strokeWidth={2} />
-                <span className="mt-2 text-[14px]">Wishlist</span>
-                <span className="absolute -top-2 right-0 min-w-[22px] h-[22px] px-1 rounded-full bg-[#ff2d37] text-white text-[11px] font-bold flex items-center justify-center">
-                  {wishlistCount}
-                </span>
-              </Link>
-
-              <button
-                onClick={openCartDrawer}
-                className="relative flex flex-col items-center justify-center text-[#222] hover:text-[#ff2d37] transition-colors"
-              >
-                <ShoppingCart size={24} strokeWidth={2} />
-                <span className="mt-2 text-[14px]">My Cart</span>
-                <span className="absolute -top-2 right-0 min-w-[22px] h-[22px] px-1 rounded-full bg-[#ff2d37] text-white text-[11px] font-bold flex items-center justify-center">
-                  {cartCount}
-                </span>
-              </button>
+                          ) : !isLoading && (
+                            <p className="text-[13px] text-[#94A3B8] text-center py-6">No matches found for "{searchValue}"</p>
+                          )}
+                        </>
+                      ) : (
+                        <div className="px-2 pb-2">
+                          <p className="text-[11px] font-bold text-[#94A3B8] uppercase mb-3">Popular searches</p>
+                          <div className="flex flex-wrap gap-2">
+                            {['EcoTank', 'LaserJet', 'Brother', 'Cartridge'].map((tag) => (
+                              <button
+                                key={tag}
+                                onClick={() => handleSearchTrigger(tag)}
+                                className="px-4 py-1.5 rounded-full border border-[#E0E7E7] text-[13px] font-medium text-[#64748B] hover:border-[#7EA1A1] hover:text-[#7EA1A1] transition-all"
+                              >
+                                {tag}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 
-          {/* MOBILE SEARCH */}
-          <div className="xl:hidden mt-5">
-            <div className="h-[46px] rounded-full border border-[#dcdcdc] bg-white px-5 flex items-center">
-              <Search size={18} className="text-[#888]" />
-              <input
-                type="text"
-                placeholder="Search the store"
-                className="w-full bg-transparent outline-none px-3 text-[14px] text-[#222] placeholder:text-[#999]"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSearchTrigger()}
-              />
-            </div>
+          {/* ICONS */}
+          <div className="flex items-center gap-4 md:gap-8">
+            <Link to={user ? '/profile' : '/login'} className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-full border border-[#E0E7E7] flex items-center justify-center text-[#37474F] group-hover:bg-[#7EA1A1] group-hover:border-[#7EA1A1] group-hover:text-white transition-all">
+                <User size={20} />
+              </div>
+              <div className="hidden xl:block">
+                <p className="text-[11px] text-[#94A3B8] font-medium uppercase leading-none">Hello, Sign In</p>
+                <p className="text-[13px] font-semibold text-[#37474F] mt-1">My Account</p>
+              </div>
+            </Link>
+
+            <Link to="/wishlist" className="relative group">
+              <div className="w-10 h-10 rounded-full border border-[#E0E7E7] flex items-center justify-center text-[#37474F] group-hover:bg-[#7EA1A1] group-hover:border-[#7EA1A1] group-hover:text-white transition-all">
+                <Heart size={20} />
+              </div>
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#7EA1A1] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
+
+            <button onClick={openCartDrawer} className="relative group flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#37474F] flex items-center justify-center text-white group-hover:bg-[#7EA1A1] transition-all">
+                <ShoppingCart size={20} />
+              </div>
+              <div className="hidden xl:block text-left">
+                <p className="text-[11px] text-[#94A3B8] font-medium uppercase leading-none">Your Cart</p>
+                <p className="text-[13px] font-semibold text-[#37474F] mt-1">${cartCount > 0 ? 'View Cart' : '0.00'}</p>
+              </div>
+              {cartCount > 0 && (
+                <span className="absolute -top-1 left-7 w-5 h-5 rounded-full bg-[#7EA1A1] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow-sm">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+            <button className="xl:hidden text-[#37474F]" onClick={() => setIsMobileMenuOpen(true)}>
+              <Menu size={28} />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* BOTTOM NAV */}
-      <div className="hidden xl:block bg-white border-b border-[#e5e5e5]">
-        <div className="max-w-[1800px] mx-auto px-6 2xl:px-10">
-          <div className="flex items-stretch justify-between">
-            <div className="flex items-stretch">
-              {/* ALL CATEGORIES */}
-              <div
-                className="relative"
-                ref={searchCatRef}
-                onMouseEnter={() => {
-                  if (location.pathname !== '/') setIsCategoryOpen(true);
-                }}
-                onMouseLeave={() => {
-                  if (location.pathname !== '/') {
-                    setIsCategoryOpen(false);
-                    setIsSearchCatOpen(false);
-                  }
-                }}
-              >
-                <button
-                  onClick={() => {
-                    if (location.pathname !== '/') {
-                      setIsSearchCatOpen((prev) => !prev);
-                    }
-                  }}
-                  className="h-[46px] w-[244px] bg-[#ff2d37] text-white flex items-center justify-between px-4 font-semibold text-[16px] uppercase"
-                >
-                  <span className="flex items-center gap-3">
-                    <LayoutGrid size={18} />
-                    All Categories
-                  </span>
-                  <ChevronDown
-                    size={18}
-                    className={`transition-transform ${location.pathname === '/' || isCategoryOpen || isSearchCatOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
+      {/* LAYER 2: SOLID MAIN COLOR BACKGROUND - CATEGORIES & NAVIGATION */}
+      <div className="bg-[#7EA1A1]">
+        <div className="max-w-[1800px] mx-auto px-4 md:px-6 h-[50px] flex items-center justify-between">
+          <div className="flex items-center h-full gap-4 md:gap-10">
+            {/* CATEGORIES BUTTON */}
+            <div
+              className="relative h-full"
+              onMouseEnter={() => setIsCategoryOpen(true)}
+              onMouseLeave={() => setIsCategoryOpen(false)}
+            >
+              <button className="h-full flex items-center gap-3 px-4 md:px-6 bg-black/5 text-white font-semibold text-[14px] uppercase hover:bg-black/10 transition-all">
+                <LayoutGrid size={18} />
+                Categories
+                <ChevronDown size={14} className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
+              </button>
 
-                <AnimatePresence>
-                  {location.pathname !== '/' && (isCategoryOpen || isSearchCatOpen) && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      className="absolute top-full left-0 w-[244px] bg-white border border-[#ececec] z-[2200]"
-                    >
-                      <div className="max-h-[380px] overflow-y-auto custom-scrollbar py-2">
-                        {categories.map((cat) => (
-                          <Link
-                            key={cat.id}
-                            to={`/shop?category=${cat.slug}`}
-                            onClick={() => {
-                              setIsCategoryOpen(false);
-                              setIsSearchCatOpen(false);
-                            }}
-                            className="flex items-center justify-between px-5 py-3 text-[14px] font-medium text-[#444] hover:bg-[#fafafa] hover:text-[#ff2d37] transition-all capitalize"
-                          >
-                            <span>{cat.name}</span>
-                            <ArrowRight size={14} />
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* NAV LINKS */}
-              <nav className="flex items-center pl-7">
-                {navLinks.map((link, index) => {
-                  const Icon = link.icon;
-                  const isActive = location.pathname === link.path;
-
-                  return (
-                    <Link
-                      key={link.name}
-                      to={link.path}
-                      className={`flex items-center gap-2 px-6 h-[46px] text-[14px] font-[500] uppercase transition-colors ${isActive ? 'text-[#111]' : 'text-[#111] hover:text-[#ff2d37]'
-                        }`}
-                    >
-                      {index === 0 && Icon ? <Icon size={16} fill="currentColor" /> : null}
-                      <span>{link.name}</span>
-                    </Link>
-                  );
-                })}
-              </nav>
+              <AnimatePresence>
+                {isCategoryOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full left-0 w-[260px] bg-white border border-[#E0E7E7] shadow-2xl z-[2200] overflow-hidden py-2"
+                  >
+                    {categories.map((cat) => (
+                      <Link
+                        key={cat.id}
+                        to={`/shop?category=${cat.slug}`}
+                        className="flex items-center justify-between px-6 py-3 text-[14px] font-semibold text-[#64748B] hover:bg-[#F8FAFA] hover:text-[#7EA1A1] transition-all"
+                      >
+                        {cat.name}
+                        <ArrowRight size={14} className="opacity-30" />
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            {/* OFFER TEXT */}
-            <div className="flex items-center gap-3 text-[#ff2d37] font-bold uppercase text-[14px] tracking-[0.02em]">
-              <Lightbulb size={17} />
-              <span>Fast & Reliable Nationwide Delivery</span>
+            {/* NAVIGATION LINKS */}
+            <nav className="hidden lg:flex items-center h-full">
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`px-5 h-full flex items-center text-[13px] font-semibold text-white uppercase transition-all relative hover:bg-white/10 ${
+                      isActive ? 'bg-white/20' : ''
+                    }`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <div className="absolute bottom-0 left-0 w-full h-[3px] bg-white" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-6 text-white">
+            <div className="flex items-center gap-3">
+              <Mail size={16} />
+              <div className="flex flex-col">
+                <span className="text-[10px] opacity-80 uppercase leading-none font-medium">Email Support</span>
+                <span className="text-[13px] font-semibold mt-1">info@harryprinterstore.shop</span>
+              </div>
             </div>
           </div>
         </div>
@@ -492,7 +362,7 @@ export default function Header() {
 
               <div className="flex-1 overflow-y-auto p-5">
                 <div className="mb-8">
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#999] mb-4">
+                  <h3 className="text-[11px] font-semibold uppercase text-[#999] mb-4">
                     Navigation
                   </h3>
                   <div className="space-y-1">
@@ -501,7 +371,7 @@ export default function Header() {
                         key={link.name}
                         to={link.path}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block py-3.5 text-[15px] font-bold text-[#222] border-b border-[#f3f3f3] last:border-0"
+                        className="block py-3.5 text-[15px] font-semibold text-[#222] border-b border-[#f3f3f3] last:border-0"
                       >
                         {link.name}
                       </Link>
@@ -510,7 +380,7 @@ export default function Header() {
                 </div>
 
                 <div>
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#999] mb-4">
+                  <h3 className="text-[11px] font-semibold uppercase text-[#999] mb-4">
                     Categories
                   </h3>
                   <div className="space-y-1">
@@ -532,7 +402,7 @@ export default function Header() {
                 <Link
                   to={user ? '/profile' : '/login'}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-3 text-[14px] font-bold text-[#222]"
+                  className="flex items-center gap-3 text-[14px] font-semibold text-[#222]"
                 >
                   <div className="w-9 h-9 rounded-full bg-white border border-[#e0e0e0] flex items-center justify-center">
                     <User size={16} />
