@@ -70,7 +70,7 @@ export default function Contact() {
 
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          
+
           {/* --- INFO COLUMN --- */}
           <div className="space-y-8">
             <div className="flex gap-4">
@@ -96,15 +96,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-12 h-12 bg-[#7EA1A1]/10 rounded-full flex items-center justify-center text-[#7EA1A1] shrink-0">
-                <Clock size={20} />
-              </div>
-              <div>
-                <h4 className="font-bold text-sm uppercase tracking-wider text-[#94A3B8] mb-1">Hours</h4>
-                <p className="text-[#37474F] font-medium">Mon - Fri: 9am - 6pm</p>
-              </div>
-            </div>
+
           </div>
 
           {/* --- FORM COLUMN --- */}

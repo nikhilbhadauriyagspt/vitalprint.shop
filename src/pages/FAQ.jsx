@@ -36,15 +36,7 @@ const faqData = [
       { q: "What if an item is out of stock?", a: "You can join the Back in Stock alert on the product page, and we’ll notify you as soon as it becomes available." }
     ]
   },
-  {
-    category: "Warranty & support",
-    questions: [
-      { q: "Do your products come with a manufacturer's warranty?", a: "Yes. Every product includes brand-backed warranty with repair/replacement coverage." },
-      { q: "How do I claim warranty for products?", a: "You can contact the manufacturer directly or reach out to us for guidance and warranty assistance." },
-      { q: "What if my hardware arrives damaged?", a: "Contact us within 48 hours with photos/videos. We’ll arrange a replacement or initiate a claim." },
-      { q: "Do you provide technical support?", a: "Yes. We offer setup help, troubleshooting, installation support, and product-related guidance." }
-    ]
-  }
+
 ];
 
 export default function FAQ() {
@@ -77,8 +69,8 @@ export default function FAQ() {
 
       <div className="max-w-3xl mx-auto px-6 py-16">
         {faqData.map((cat, catIdx) => {
-          const filteredQuestions = cat.questions.filter(q => 
-            q.q.toLowerCase().includes(searchQuery.toLowerCase()) || 
+          const filteredQuestions = cat.questions.filter(q =>
+            q.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
             q.a.toLowerCase().includes(searchQuery.toLowerCase())
           );
 

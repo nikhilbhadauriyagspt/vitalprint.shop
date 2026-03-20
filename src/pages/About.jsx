@@ -32,7 +32,7 @@ export default function About() {
     {
       icon: Headphones,
       title: "Professional Support",
-      desc: "Expert technicians providing seamless setup guidance, troubleshooting, and long-term maintenance for your hardware."
+      desc: "Experts providing seamless setup guidance, troubleshooting, and long-term maintenance for your hardware."
     }
   ];
 
@@ -50,7 +50,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white font-['Rubik'] text-[#37474F] pb-14 md:pb-20">
       <SEO
-        title="About Us | Our Commitment"
+        title="About Us"
         description="Learn about our commitment to printing excellence, our journey, and the core values that drive our professional services."
       />
 
@@ -68,7 +68,7 @@ export default function About() {
 
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-[#37474F] mb-6">
-                Redefining the <br /> 
+                Redefining the <br />
                 <span className="text-[#7EA1A1]">Printing Experience.</span>
               </h1>
               <p className="text-lg md:text-xl leading-relaxed text-[#64748B] font-medium">
@@ -87,7 +87,7 @@ export default function About() {
               Our Vision
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-[#37474F] mb-6 tracking-tight">
-              Built on Transparency <br /> and Technical Precision.
+              Built on Transparency <br /> and  Precision.
             </h2>
             <p className="text-base md:text-lg text-[#64748B] leading-relaxed mb-8 font-medium">
               Established in 2026, Harry's Printer Store was founded to simplify the acquisition of high-performance printing infrastructure. We believe that technology should be accessible, reliable, and straightforward.
@@ -101,9 +101,9 @@ export default function About() {
             </Link>
           </div>
           <div className="bg-[#F8FAFA] p-8 md:p-12 rounded-[40px] border border-[#E0E7E7]/50">
-             <p className="text-base md:text-lg text-[#64748B] leading-relaxed font-medium italic">
-               "Our goal is to provide a destination where professionals can find top-tier hardware without complexity. Every piece of equipment we offer is selected for its durability and performance value."
-             </p>
+            <p className="text-base md:text-lg text-[#64748B] leading-relaxed font-medium italic">
+              "Our goal is to provide a destination where professionals can find top-tier hardware without complexity. Every piece of equipment we offer is selected for its durability and performance value."
+            </p>
           </div>
         </div>
 
@@ -138,7 +138,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-[#37474F] p-10 md:p-14 rounded-[40px] text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 opacity-10">
-               <Target size={120} />
+              <Target size={120} />
             </div>
             <div className="relative z-10">
               <span className="text-[11px] font-black uppercase tracking-widest opacity-60 mb-4 block">Our Mission</span>
@@ -151,13 +151,13 @@ export default function About() {
 
           <div className="bg-[#7EA1A1] p-10 md:p-14 rounded-[40px] text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 opacity-10">
-               <Users size={120} />
+              <Users size={120} />
             </div>
             <div className="relative z-10">
               <span className="text-[11px] font-black uppercase tracking-widest opacity-60 mb-4 block">Our Reach</span>
               <h3 className="text-2xl md:text-3xl font-bold mb-6">Nationwide Support Network.</h3>
               <p className="text-lg opacity-80 leading-relaxed font-normal">
-                Serving the entire United States with a commitment to fast logistics and long-term service value. Our support team is always available to assist with your technical needs.
+                Serving the entire United States with a commitment to fast logistics and long-term service value. Our support team is always available to assist with your needs.
               </p>
             </div>
           </div>

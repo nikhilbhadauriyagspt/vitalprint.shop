@@ -37,9 +37,9 @@ export default function Footer() {
               <img src="/logo/logo.png" alt="Harry's Printer Store" className="h-9 object-contain" />
             </Link>
             <p className="text-[#64748B] text-[15px] font-medium leading-relaxed max-w-xs mb-8">
-              Your trusted partner for high-performance printers, ink, and professional supplies.
-            </p>
-            
+              Harry Printer Store offers reliable printers, quality ink, and essential accessories
+              to make everyday printing simple and efficient.   </p>
+
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Mail size={18} className="text-[#7EA1A1] shrink-0 mt-1" />
@@ -122,7 +122,7 @@ export default function Footer() {
       {/* BOTTOM STRIP */}
       <div className="w-full border-t border-[#F1F5F5] py-10">
         <div className="max-w-[1800px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
-          
+
           <div className="flex flex-col items-center md:items-start gap-4">
             <div className="text-[#94A3B8] text-[13px] font-medium text-center md:text-left">
               &copy; {new Date().getFullYear()} <span className="text-[#37474F] font-bold tracking-tight">Harry's Printer Store Inc.</span> All rights reserved.
