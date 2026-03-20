@@ -123,8 +123,13 @@ export default function Footer() {
       <div className="w-full border-t border-[#F1F5F5] py-10">
         <div className="max-w-[1800px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           
-          <div className="text-[#94A3B8] text-[13px] font-medium text-center md:text-left">
-            &copy; {new Date().getFullYear()} <span className="text-[#37474F] font-bold tracking-tight">Harry's Printer Store Inc.</span> All rights reserved.
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <div className="text-[#94A3B8] text-[13px] font-medium text-center md:text-left">
+              &copy; {new Date().getFullYear()} <span className="text-[#37474F] font-bold tracking-tight">Harry's Printer Store Inc.</span> All rights reserved.
+            </div>
+            <p className="text-[11px] text-[#94A3B8] font-bold uppercase tracking-widest text-center md:text-left">
+              Disclaimer - For Informational only. No software installation or distribution.
+            </p>
           </div>
 
           <div className="flex items-center gap-10">
