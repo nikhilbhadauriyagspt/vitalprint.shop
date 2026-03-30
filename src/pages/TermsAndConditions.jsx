@@ -369,10 +369,8 @@ export default function TermsAndConditions() {
         </p>
         <div className="bg-gray-50 p-8 rounded-sm border border-border my-8 not-prose">
           <address className="not-italic text-gray-700 font-bold leading-relaxed space-y-2 capitalize ">
-            <p className="text-black font-extrabold">Vital Print LLC</p>
-            <p>Direct Distribution</p>
-            <p>3100 Folsom Blvd, Sacramento, CA 95816, USA</p>
-            <p>United States</p>
+            <p className="text-black font-extrabold">Henan Yuantiao Computer Technology Co. Ltd.</p>
+            <p>Room 718, 26th Floor, Building 53, Futian Taiyangcheng, No. 2 Hanghai East Road, Guancheng Hui District, Zhengzhou City, Henan Province; Suzhou City, JS, 320500, China</p>
             <p className="pt-4 text-primary font-extrabold lowercase">Email: info@vitalprint.shop</p>
           </address>
         </div>

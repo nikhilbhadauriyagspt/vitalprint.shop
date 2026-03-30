@@ -284,10 +284,10 @@ export default function PrivacyPolicy() {
       <h2>13. How Can You Contact Us About This Notice?</h2>
       <p>If you have questions or comments about this notice, you may email us at <a href="mailto:info@vitalprint.shop">info@vitalprint.shop</a> or contact us by post at:</p>
       <div className="bg-gray-50 p-8 rounded-sm border border-border my-8 not-prose">
-        <address className="not-italic text-gray-700 font-bold leading-relaxed">
-          Vital Print LLC<br />
-          3100 Folsom Blvd<br />
-          Sacramento, CA 95816, USA
+        <address className="not-italic text-gray-700 font-bold leading-relaxed space-y-2 capitalize ">
+          <p className="text-black font-extrabold">Henan Yuantiao Computer Technology Co. Ltd.</p>
+          <p>Room 718, 26th Floor, Building 53, Futian Taiyangcheng, No. 2 Hanghai East Road, Guancheng Hui District, Zhengzhou City, Henan Province; Suzhou City, JS, 320500, China</p>
+          <p className="pt-4 text-primary font-extrabold lowercase">Email: info@vitalprint.shop</p>
         </address>
       </div>
 
